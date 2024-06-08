@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/sheep.png" type="image/png">
+    <link rel="stylesheet" href="login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
+    <style>
+        /* Add this to your login.css file or inside a <style> tag */
+        #loading {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            margin: -25px 0 0 -25px;
+            border: 6px solid #ccc;
+            border-top-color: #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body style="background-image: url('/img/bg.jpg'); background-size: cover; background-position: center;">
+    <section class="vh-100 d-flex align-items-center justify-content-center" style="background-image: url('/img/bg.jpg'); background-size: cover; background-position: center;">
+        
+        <div class="container">
+            
+            <div class="row gx-0 align-items-center justify-content-end">
+                <div class="col-md-6 px-2"> <!-- Đổi lớp cột và điều chỉnh kích thước -->
+                    <div class="slideshow-container">
+                        <div class="mySlides fade">
+                            <img src="/img/slide1.png" style="width:100%">
+                        </div>
+                      
+                        <div class="mySlides fade">
+                            <img src="/img/slide2.png" style="width:100%">
+                        </div>
+                      
+                        <div class="mySlides fade">
+                            <img src="/img/slide1.jpg" style="width:100%">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-1 px-0"> <!-- Đổi lớp cột và điều chỉnh kích thước -->
+                </div>
+                <div class="col-md-5 px-4"> <!-- Đổi lớp cột và điều chỉnh kích thước -->
+                    <form id="loginForm" class="form-container" enctype="multipart/form-data"> 
+                        <h3 style="text-transform: uppercase; text-align: center;color:  rgba(33, 91, 192, 0.982);">Đăng nhập hệ thống</h3>    
+                        <hr>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="form3Example3">Tài khoản</label>
+                            <input type="text" name="username" id="username" class="form-control form-control-lg" placeholder="Nhập tài khoản" />
+                            <div id="usernameError" class="text-danger"></div>
+                        </div>
+                
+                        <!-- Password input -->
+                        <div data-mdb-input-init class="form-outline mb-3">
+                            <label class="form-label" for="form3Example4">Mật khẩu</label>
+                            <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu" />
+                            <div id="passwordError" class="text-danger"></div>
+                        </div>
+                
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Checkbox -->
+                            <div class="form-check mb-0">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                <label class="form-check-label" for="remember">Lưu mật khẩu</label>
+                            </div>
+                            <a href="./forgotPassword.html" class="text-body">Quên mật khẩu?</a>
+                        </div>
+                
+                        <div class="text-center text-lg-start mt-4 pt-2 d-flex justify-content-center">
+                            <button type="submit" name="submit" value="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="width: 100%; height: 54px; padding-left: 2rem; padding-right: 2rem;">Đăng nhập</button>
+                        </div>
+                        <div id="error_message" class="text-danger text-center mt-2"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Show success message if available in localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            var successMessage = localStorage.getItem('success_message');
+            if (successMessage) {
+                alert(successMessage);
+                localStorage.removeItem('success_message');
+            }
+        });
+
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if (document.cookie) {
+                var cookies = document.cookie.split(';');
+                cookies.forEach(function(cookie) {
+                    var parts = cookie.trim().split('=');
+                    var name = parts[0];
+                    var value = parts[1];
+                    if (name === 'username') {
+                        document.getElementById('username').value = value;
+                    } else if (name === 'password') {
+                        document.getElementById('password').value = value;
+                    }
+                });
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var remember = document.getElementById('remember').checked ? 'on' : '';
+
+            document.getElementById('usernameError').innerText = "";
+            document.getElementById('passwordError').innerText = "";
+            document.getElementById('error_message').innerText = "";
+
+            if (username === "") {
+                document.getElementById('usernameError').innerText = "Vui lòng nhập tài khoản.";
+                return;
+            }
+            if (password === "") {
+                document.getElementById('passwordError').innerText = "Vui lòng nhập mật khẩu.";
+                return;
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "login.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        if (response.role === "Admin") {
+                            window.location.href = "./admin/index.php";
+                        } else {
+                            window.location.href = "./user/index.php";
+                        }
+                    } else {
+                        document.getElementById('error_message').innerText = response.error;
+                    }
+                }
+            };
+            xhr.send("username=" + username + "&password=" + password + "&remember=" + remember);
+        });
+    </script>
+</body>
+
+
+</html>
