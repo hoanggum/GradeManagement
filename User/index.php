@@ -1,9 +1,10 @@
 
 <?php
+include_once '../config.php';
+include_once '../Library/Db.class.php';
 
 
-
-$page = isset($_GET['page']) ? $_GET['page'] : 'Home';
+$page = isset($_GET['page']) ? $_GET['page'] : 'Academic_Outcomes';
 
 ?>
          <?php 

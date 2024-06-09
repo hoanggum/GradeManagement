@@ -1,0 +1,65 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+.bg-gray {
+    background-color: #EFF8FF;
+}
+
+.container {
+    max-width: 800px;
+
+}
+.form-container {
+    max-width: 450px; 
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.212); 
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-control::placeholder {
+    color: #F3F3F4;
+}
+.form-control::-webkit-input-placeholder {
+    font-size: 16px; 
+}
+.form-container .form-label {
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+}
+.mySlides {
+    display: none;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+
