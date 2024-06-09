@@ -45,6 +45,7 @@ class Semester extends Db {
         );
         return $this->updateQuery($sql, $params);
     }
+    
 
     public function getLastInsertedId() {
         return $this->lastInsertId();

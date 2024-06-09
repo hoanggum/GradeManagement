@@ -1,4 +1,5 @@
 <?php
+
 require_once '../Model/Teacher.php';
 require_once '../Model/Semester.php';
 // Giả sử bạn đã có session và UserID của giáo viên
@@ -129,25 +130,59 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
             });
         });
         function importGrades(sectionID) {
-        var formData = new FormData($('#import-form-' + sectionID)[0]);
+            var formData = new FormData($('#import-form-' + sectionID)[0]);
 
-        // Perform AJAX request to import grades
-        $.ajax({
-            url: 'import_grades.php', // Replace with the actual URL to import grades
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                // Handle success response
-                console.log('Grades imported successfully:', response);
-            },
-            error: function(xhr, status, error) {
-                // Handle error response
-                console.error('Error importing grades:', error);
-            }
-        });
-    }
+            // Perform AJAX request to import grades
+            $.ajax({
+                url: 'import_grades.php', // Replace with the actual URL to import grades
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    // Handle success response
+                    console.log('Grades imported successfully:', response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle error response
+                    console.error('Error importing grades:', error);
+                }
+            });
+        }
+        function saveGrades(sectionID) {
+            var grades = [];
+            $('#modal-' + sectionID + ' tbody tr').each(function() {
+                var studentID = $(this).find('td').eq(0).text().trim();
+                var gradeInClass = $(this).find('.gradeInClass').val();
+                var grade = $(this).find('.grade').val();
+                grades.push({ StudentID: studentID, GradeInClass: gradeInClass, Grade: grade });
+            });
+
+            // Chuyển đổi dữ liệu thành chuỗi JSON
+            var jsonData = JSON.stringify({ sectionID: sectionID, grades: grades });
+            alert(jsonData);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "?page=save_grades", true);
+            
+            // Đặt header Content-Type là application/json
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(jsonData);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert('Đã lưu điểm thành công!');
+                        console.log(xhr.responseText);
+                    } else {
+                        console.error('Lỗi khi lưu điểm:', xhr.status);
+                    }
+                }
+            };
+
+            // Gửi dữ liệu đã được chuyển đổi
+        }
+
+
     </script>
 </body>
 </html>

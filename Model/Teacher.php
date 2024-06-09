@@ -35,27 +35,16 @@ class Teacher extends Db {
 
     // Save grades for students in a section
     public function saveGrade($studentId, $sectionId, $gradeInClass, $finalExamGrade) {
-        $finalGrade = $this->calculateFinalGrade($gradeInClass, $finalExamGrade);
-        $sql = "INSERT INTO `student_semester`(`SemesterID`, `SectionID`, `StudentID`, `Grade`, `semester`, `GradeInClass`) 
-                VALUES (:studentId, :sectionId, :gradeInClass, :finalExamGrade, :finalGrade)
-                ON DUPLICATE KEY UPDATE 
-                    GradeInClass = VALUES(GradeInClass), 
-                    FinalExamGrade = VALUES(FinalExamGrade), 
-                    FinalGrade = VALUES(FinalGrade)";
+        $sql = "UPDATE student_semester SET  Grade = :grade, gradeInClass = :gradeInClass WHERE SectionID = :sectionId AND StudentID = :studentId";
         $params = array(
             ':studentId' => $studentId,
             ':sectionId' => $sectionId,
             ':gradeInClass' => $gradeInClass,
-            ':finalExamGrade' => $finalExamGrade,
-            ':finalGrade' => $finalGrade
+            ':grade' => $finalExamGrade,
         );
         return $this->updateQuery($sql, $params);
     }
 
-    // Calculate final grade based on class and exam grades
-    private function calculateFinalGrade($gradeInClass, $finalExamGrade) {
-        return ($finalExamGrade * 0.7) + ($gradeInClass * 0.3);
-    }
 }
 
 ?>

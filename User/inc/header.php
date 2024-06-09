@@ -24,11 +24,11 @@
                         <a class="nav-link" href="?page=Home">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=schedule">Lịch công tác</a>
+                        <a class="nav-link" href="?page=grade_entry">Quản lí điểm</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Khen thưởng - Kỹ luật</a>
+                        <a class="nav-link" href="?page=academic_outcomes">Kết quả học tập</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=Mysalary">Lương - Bảo hiểm </a>
