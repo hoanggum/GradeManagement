@@ -89,7 +89,7 @@
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa-solid fa-calendar-days"></span>
-                <span class="title">Quản lý công tác</span>
+                <span class="title">Phân công lịch thi</span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
