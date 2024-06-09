@@ -1,0 +1,241 @@
+.navbar {
+    background-color: #fffefeea; /* Màu đen */
+    color: #000000; /* Màu trắng cho chữ */
+}
+
+/* Chỉnh màu chữ cho các liên kết */
+.navbar-nav .nav-link {
+    color: #010101; /* Màu trắng */
+}
+
+/* Khi rê chuột vào các liên kết */
+.navbar-nav .nav-link:hover {
+    color: #1d54d4; /* Màu xám nhạt */
+}
+
+/* Chỉnh màu nền và chữ cho logo */
+.navbar-brand {
+    color: #0b0b0b; /* Màu trắng */
+}
+.navbar-brand:hover{
+    color: #1d54d4;
+    /* #02dbf7 */
+}
+.modal-body-content a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 0;
+    width: 100%;
+    color: black;
+}
+
+.modal-body-content a:hover{
+    background-color: rgba(0,0,0,.125);
+    color: black;
+}
+/* Định dạng cho sidebar */
+.avt-img {
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
+.modal-avt-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-body-content {
+    text-align: center;
+    margin-top: 20px; /* Điều chỉnh khoảng cách giữa hình ảnh và chữ */
+}
+.modal-avt-img img {
+    max-width: 200px; /* Đặt chiều rộng tối đa cho hình ảnh */
+    max-height: 180px; /* Đặt chiều cao tối đa cho hình ảnh */
+}
+.carousel-item img {
+    width: 100%;
+    height: 360px;
+}
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    margin-right: auto; /* Đẩy logo ra xa cạnh trái */
+}
+body{
+    background-color: #e0f0fabc;
+}
+/*---- */
+.nav-item {
+    position: relative;
+    padding-right: 5px; /* Thêm khoảng cách bên phải cho mỗi nav-item */
+    padding-left: 15px; /* Thêm khoảng cách bên trái cho mỗi nav-item */
+}
+
+#account-info{
+    padding: 0 calc(20%);
+    padding-top: 2rem;
+}
+.account-info-content {
+    margin-bottom: 1rem;
+}
+.account-info-item-title, .account-info-edit-btn, .password-editing-btn {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.account-info-item-title {
+    float: left;
+}
+
+.account-info-edit-btn, .password-editing-btn {
+    float: right;
+    padding: 0 1rem;
+    border-bottom: 1px solid #757575;
+    margin-bottom: 0.6rem;
+    color: #cacaca;
+}
+
+.account-info-edit-btn:hover, .password-editing-btn:hover {
+    border-bottom-color: black;
+    color: black;
+}
+
+.account-info-edit-btn-selected {
+    border-bottom-color: black;
+    color: black;
+}
+
+.account-info-item input {
+    width: 100%;
+    border: 1px solid #757575;
+    border-radius: 6px;
+    line-height: 5.2rem;
+    padding: 0 1rem;
+}
+#account-display .offcanvas-body {
+    text-align: center;
+}
+.main-content {
+    margin-bottom: 20px; /* Khoảng cách giữa phần body và footer */
+}
+.footer {
+    padding-top: 20px; /* Khoảng cách từ phía trên của footer */
+    padding-bottom: 20px; /* Khoảng cách từ phía dưới của footer */
+    background-color: #f8f9fa; /* Màu nền của footer */
+    text-align: center; /* Căn giữa nội dung của footer */
+    width: 100%; /* Chiều rộng của footer là 100% của trang */
+}
+  
+/**/
+.hero {
+    position: relative; /* Đặt vị trí tương đối để có thể sử dụng absolute positioning cho các phần tử con */
+    overflow: hidden; /* Ẩn phần nội dung ra ngoài khung khi có */
+}
+.tittle {
+    font-size: 40px;
+    color: #012651;
+    margin-bottom: 20px; /* Khoảng cách dưới của phần tử tiêu đề */
+}
+.tittle:hover{
+    font-size: 50px;
+    color: #1260b9;
+}
+
+/* CSS cho phần tử phụ đề */
+.subTitle { 
+    font-size: 20px;
+    color: #012651;
+    margin-bottom: 20px; /* Khoảng cách dưới của phần tử phụ đề */
+}
+.d-flex {
+    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử theo hàng ngang */
+    flex-direction: column; /* Hiển thị các phần tử dọc theo trục chính */
+    align-items: center;
+    /* Căn giữa các phần tử theo chiều ngang */
+}
+  /* CSS cho phần chứa hình nền */
+.hero-bg {
+    position: absolute; /* Đặt vị trí tuyệt đối để che phủ toàn bộ phần hero */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover; /* Đảm bảo hình nền sẽ căn chỉnh và mở rộng để phủ toàn bộ phần hero */
+    object-position: center /* Đặt vị trí z-index để đẩy phần nền xuống dưới cùng */
+}
+.btn-get-started {
+    padding: 12px 24px;
+    background-color: #388da8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-get-started:hover {
+    background-color: #27758f;
+  }
+  
+  /* CSS cho phần nút "Watch Video" */
+  .btn-watch-video {
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #000000;
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-left: 20px; /* Khoảng cách bên trái của phần tử nút "Watch Video" */
+  }
+  
+  .btn-watch-video:hover {
+    background-color: #b8d0ff;
+    color: #388da8;
+  }
+  .hero .d-flex {
+    flex-direction: row; /* Thay đổi hướng của flexbox từ dọc thành ngang */
+    justify-content: center; /* Căn giữa các phần tử theo chiều ngang */
+  }
+  
+  /* CSS cho nút "Get Started" */
+  .hero .btn-get-started {
+    margin-right: 20px; /* Khoảng cách bên phải của nút "Get Started" */
+  }
+  .containerss {
+    padding: 100px 0; /* Khoảng cách nội dung từ top và bottom */
+  }
+  #loading {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border: 6px solid #ccc;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
