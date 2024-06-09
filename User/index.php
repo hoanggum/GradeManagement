@@ -7,7 +7,7 @@ if(!isset($_SESSION)) session_start();
 if(!isset($_SESSION['UserID'])){
     header('location: ../index.html');exit;
 }
-$page = isset($_GET['page']) ? $_GET['page'] : 'grade_entry';
+$page = isset($_GET['page']) ? $_GET['page'] : 'supervisor_register';
 
 ?>
          <?php 
