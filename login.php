@@ -21,6 +21,19 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             $_SESSION['UserID'] = $user['UserID'];
             $_SESSION['FullName'] = $user['FullName'];
             $_SESSION['Role'] = $user['Role'];
+            if ($user['Role'] === 'Teacher') {
+                $sqlTeacher = "SELECT TeacherID FROM teacher WHERE UserID = :userId";
+                $stmtTeacher = $conn->prepare($sqlTeacher);
+                $stmtTeacher->bindParam(':userId', $user['UserID']);
+                $stmtTeacher->execute();
+                $teacher = $stmtTeacher->fetch(PDO::FETCH_ASSOC);
+                if ($teacher) {
+                    $_SESSION['TeacherID'] = $teacher['TeacherID'];
+                    $response['TeacherID'] = $teacher['TeacherID'];
+                } else {
+                    $response['error'] = "Không tìm thấy thông tin giáo viên.";
+                }
+            }
             if ($remember == "on") {
                 // Thiết lập cookie để lưu tên người dùng và mật khẩu
                 setcookie("username", $username, time() + (86400 * 30), "/"); // 30 ngày

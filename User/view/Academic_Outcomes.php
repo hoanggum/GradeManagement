@@ -1,7 +1,6 @@
 <?php
 require_once '../Model/Semester.php';
 // Assuming you have a way to get the current user's ID, for example through session
-session_start();
 $userId = $_SESSION['UserID'];
 
 // Instantiate the Semester class
@@ -17,15 +16,15 @@ $passedCredits = 0;
 ?>
 <style>
     .grade-report-container {
-    font-family: Arial, sans-serif;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+        font-family: Arial, sans-serif;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
-
+s
     .header {
         text-align: center;
         margin-bottom: 20px;
@@ -41,6 +40,7 @@ $passedCredits = 0;
 
     .semester-container {
         margin-top: 20px;
+        width: 100%;
     }
 
     .semester-section {
@@ -79,14 +79,14 @@ $passedCredits = 0;
     }
 
 </style>
-<div class="container-fluid grade-report-container">
-        <header class="text-center">
+<header class="text-center">
             <h1>Kết quả học tập</h1>
             <div class="student-info">
                 <p>Name: <span class="student-name"><?php echo htmlspecialchars($semesters[0]['FullName']); ?></span></p>
                 <p>ID: <span class="student-id"><?php echo htmlspecialchars($semesters[0]['StudentID']); ?></span></p>
             </div>
         </header>
+<div class="container-fluid grade-report-container">      
         <main class="semester-container">
             <?php foreach ($gradesBySemester as $semester => $grades): ?>
                 <section class="semester-section">
@@ -160,8 +160,7 @@ $passedCredits = 0;
             </div>
 
         </main>
-        
-        <footer class="text-center">
-            <p>&copy; 2024 Your School Name</p>
-        </footer>
     </div>
+    <footer class="text-center">
+            <p>&copy; 2024 Novelnest</p>
+        </footer>

@@ -57,7 +57,7 @@
         <div class="modal-avt-img">
             <a href="#"> <!-- Link to My Account -->
 
-                <img src="" alt="User Name" style="border-radius: 50%;">
+                <img src="./Img/Dinkaru.jpg" alt="User Name" style="border-radius: 50%;">
             </a>
         </div>
         <div class="modal-body-content d-flex flex-column">

@@ -3,8 +3,11 @@
 include_once '../config.php';
 include_once '../Library/Db.class.php';
 
-
-$page = isset($_GET['page']) ? $_GET['page'] : 'Home';
+if(!isset($_SESSION)) session_start();
+if(!isset($_SESSION['UserID'])){
+    header('location: ../index.html');exit;
+}
+$page = isset($_GET['page']) ? $_GET['page'] : 'grade_entry';
 
 ?>
          <?php 
