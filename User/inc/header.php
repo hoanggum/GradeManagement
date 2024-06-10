@@ -31,10 +31,10 @@
                         <a class="nav-link" href="?page=academic_outcomes">Kết quả học tập</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=Mysalary">Lương - Bảo hiểm </a>
+                        <a class="nav-link" href="?page=supervisor_register">Đăng kí gác thi </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=leave-request">Xin nghỉ phép</a>
+                        <a class="nav-link" href="?page=register_section">Đăng kí học phần</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://huit.edu.vn/vien-chuc/tin-tuc-to-chuc-nhan-su.html">Tin Tức</a>

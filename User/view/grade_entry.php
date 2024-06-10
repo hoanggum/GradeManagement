@@ -15,12 +15,9 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý điểm</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
 
@@ -29,7 +26,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
     <div class="row mt-3">
         <?php foreach ($sections as $section): ?>
             <div class="col-6 mb-3">
-                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-<?php echo $section['SectionID']; ?>">
+                <button class="btn btn-primary btn-block" style="width: 100%"; data-toggle="modal" data-target="#modal-<?php echo $section['SectionID']; ?>">
                     Section ID: <?php echo htmlspecialchars($section['SectionID']); ?> - <?php echo htmlspecialchars($section['SubjectName']); ?> 
                 </button>
             </div>
