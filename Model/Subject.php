@@ -12,23 +12,21 @@ class Subject extends Db {
         return $this->selectQuery($sql, $params);
     }
 
-    public function addSubject($subjectName, $subjectCode, $credits) {
-        $sql = "INSERT INTO subjects (SubjectName, SubjectCode, Credits) VALUES (:subjectName, :subjectCode, :credits)";
+    public function addSubject($subjectName, $numOfCredits) {
+        $sql = "INSERT INTO subjects (SubjectName, NumOfCredits) VALUES (:subjectName, :numOfCredits)";
         $params = array(
             ':subjectName' => $subjectName,
-            ':subjectCode' => $subjectCode,
-            ':credits' => $credits
+            ':numOfCredits' => $numOfCredits
         );
         return $this->updateQuery($sql, $params);
     }
 
-    public function updateSubject($subjectId, $subjectName, $subjectCode, $credits) {
-        $sql = "UPDATE subjects SET SubjectName = :subjectName, SubjectCode = :subjectCode, Credits = :credits WHERE SubjectID = :subjectId";
+    public function updateSubject($subjectId, $subjectName, $numOfCredits) {
+        $sql = "UPDATE subjects SET SubjectName = :subjectName, NumOfCredits = :numOfCredits WHERE SubjectID = :subjectId";
         $params = array(
             ':subjectId' => $subjectId,
             ':subjectName' => $subjectName,
-            ':subjectCode' => $subjectCode,
-            ':credits' => $credits
+            ':numOfCredits' => $numOfCredits
         );
         return $this->updateQuery($sql, $params);
     }
@@ -39,5 +37,4 @@ class Subject extends Db {
         return $this->updateQuery($sql, $params);
     }
 }
-
 ?>

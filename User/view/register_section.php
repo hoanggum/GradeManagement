@@ -53,11 +53,12 @@ $subjects = $subjectObj->getAllSubjects();
 <script>
 function loadSections(subjectId) {
     $.ajax({
-        url: '?page=get_sections.php',
+      
+        url: '?page=get_section',
         type: 'GET',
         data: { subjectId: subjectId },
         success: function(response) {
-            $('#sections-container').html(response);
+           $('#sections-container').html(response);
         },
         error: function(xhr, status, error) {
             console.error('Error loading sections:', error);
