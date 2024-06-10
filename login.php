@@ -34,6 +34,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                     $response['error'] = "Không tìm thấy thông tin giáo viên.";
                 }
             }
+            if ($user['Role'] === 'Student') {
+                $sqlStudent = "SELECT StudentID FROM student WHERE UserID = :userId";
+                $stmtStudent = $conn->prepare($sqlStudent);
+                $stmtStudent->bindParam(':userId', $user['UserID']);
+                $stmtStudent->execute();
+                $student = $stmtStudent->fetch(PDO::FETCH_ASSOC);
+                
+                if ($student) {
+                    $_SESSION['StudentID'] = $student['StudentID'];
+                    $response['StudentID'] = $student['StudentID'];
+                } else {
+                    $response['error'] = "Student information not found.";
+                }
+            }
             if ($remember == "on") {
                 // Thiết lập cookie để lưu tên người dùng và mật khẩu
                 setcookie("username", $username, time() + (86400 * 30), "/"); // 30 ngày

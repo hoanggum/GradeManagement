@@ -114,25 +114,36 @@ s
                                         <td><?php echo htmlspecialchars($grade['GradeInClass']); ?></td>
                                         <td><?php echo htmlspecialchars($grade['Grade']); ?></td>
                                         <?php
-                                        $finalGrade = $semesterObj->calculateFinalGrade($grade['GradeInClass'], $grade['Grade']);
-                                        $gradePoint4 = $semesterObj->convertToGradePoint4($finalGrade);
-                                        $letterGrade = $semesterObj->convertToLetterGrade($finalGrade);
-                                        $evaluation = $semesterObj->evaluateGrade($finalGrade);
-                                        if ($gradePoint4 != 0.0) {
-                                            $pass = true;
-                                            $passedCredits += $grade['NumOfCredits'];
+                                        if ($grade['GradeInClass'] != "" || $grade['Grade'] != "") {
+                                            $finalGrade = $semesterObj->calculateFinalGrade($grade['GradeInClass'], $grade['Grade']);
+                                            $gradePoint4 = $semesterObj->convertToGradePoint4($finalGrade);
+                                            $letterGrade = $semesterObj->convertToLetterGrade($finalGrade);
+                                            $evaluation = $semesterObj->evaluateGrade($finalGrade);
+                                            if ($gradePoint4 != 0.0) {
+                                                $pass = true;
+                                                $passedCredits += $grade['NumOfCredits'];
+                                            }
+                                        }
+                                        else{
+                                            $finalGrade ="";
+                                            $gradePoint4="";
+                                            $letterGrade="";
+                                            $evaluation="";
                                         }
                                         ?>
                                         <td><?php echo htmlspecialchars($finalGrade); ?></td>
                                         <td><?php echo htmlspecialchars($gradePoint4); ?></td>
                                         <td><?php echo htmlspecialchars($letterGrade); ?></td>
                                         <td><?php echo htmlspecialchars($evaluation); ?></td>
+                                        
                                         <td>
+                                            <?php if ($grade['GradeInClass'] != "" || $grade['Grade'] != ""):?>
                                             <?php if ($pass): $pass=false; ?>
                                                 <p style="color: #4CAF50">&#10004;</p>
                                                 
                                             <?php else: ?>
                                                 <p style="color: red">&#10006; </p>
+                                            <?php endif; ?>
                                             <?php endif; ?>
                                         </td>
                                     </tr>
