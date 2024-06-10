@@ -2,6 +2,9 @@
 <?php
 include_once '../config.php';
 include_once '../Library/Db.class.php';
+
+
+
 require_once '../Model/Teacher.php';
 require_once '../Model/Semester.php';
 if (!isset($_SESSION)) session_start();
@@ -18,6 +21,7 @@ $path = "./View/{$page}.php";
 $callFooter = true;
 
 ?>
+
             <?php
             // Main content
             if (file_exists($path)) {

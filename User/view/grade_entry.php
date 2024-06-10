@@ -93,17 +93,17 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="import-form-<?php echo $section['SectionID']; ?>" enctype="multipart/form-data">
+                        <form id="import-form-<?php echo $section['SectionID']; ?>" method="post" action="?page=import_grades" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="excel-file-<?php echo $section['SectionID']; ?>">Chọn file Excel:</label>
                                 <input type="file" class="form-control-file" id="excel-file-<?php echo $section['SectionID']; ?>" name="excel-file" accept=".xls,.xlsx" required>
                             </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary" name="btn_import_file_excel">Import</button>
                         </form>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary" onclick="importGrades('<?php echo $section['SectionID']; ?>')">Import</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -130,6 +130,11 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                 $row.find('.finalGrade').val(finalGrade.toFixed(2));
             });
         });
+        document.getElementById("closeModalButton").addEventListener("click", function() {
+            var modal = document.getElementById("modalId"); // Thay "modalId" bằng id của modal bạn muốn ẩn
+            modal.style.display = "none";
+        });
+
 
         function saveGrades(sectionID, studentID) {
             var gradeInClass = $('input[name="gradeInClass[' + studentID + ']"]').val();
@@ -140,7 +145,6 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                 grade: grade,
                 gradeInClass: gradeInClass
             };
-            console.log(data);
             $.ajax({
                 url: '?page=saveGrades',
                 type: 'POST',
@@ -156,32 +160,6 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                 }
             });
 
-        }
-
-        function importGrades(sectionID) {
-            var formData = new FormData($('#import-form-' + sectionID)[0]);
-
-            // Perform AJAX request to import grades
-            function importGrades(sectionID) {
-                var formData = new FormData($('#import-form-' + sectionID)[0]);
-
-                // Perform AJAX request to import grades
-                $.ajax({
-                    url: 'import_grades.php', // Replace with the actual URL to import grades
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        // Handle success response
-                        console.log('Grades imported successfully:', response);
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error response
-                        console.error('Error importing grades:', error);
-                    }
-                });
-            }
         }
     </script>
 </body>
