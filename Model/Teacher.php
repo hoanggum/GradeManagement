@@ -4,7 +4,7 @@ class Teacher extends Db {
     // Get teacher's information by user ID
     public function getTeacherByUserId($userId) {
         $sql = "SELECT t.*, u.FullName
-                FROM teachers t
+                FROM teacher t
                 INNER JOIN users u ON t.UserID = u.UserID
                 WHERE t.UserID = :userId";
         $params = array(':userId' => $userId);
@@ -35,19 +35,14 @@ class Teacher extends Db {
 
     // Save grades for students in a section
     public function saveGrade($studentId, $sectionId, $gradeInClass, $finalExamGrade) {
-        $finalGrade = $this->calculateFinalGrade($gradeInClass, $finalExamGrade);
-        $sql = "INSERT INTO `student_semester`(`SemesterID`, `SectionID`, `StudentID`, `Grade`, `semester`, `GradeInClass`) 
-                VALUES (:studentId, :sectionId, :gradeInClass, :finalExamGrade, :finalGrade)
-                ON DUPLICATE KEY UPDATE 
-                    GradeInClass = VALUES(GradeInClass), 
-                    FinalExamGrade = VALUES(FinalExamGrade), 
-                    FinalGrade = VALUES(FinalGrade)";
+
+        $sql = "UPDATE `student_semester` SET  `Grade` = :grade, `gradeInClass` = :gradeInClass WHERE `SectionID` = :sectionId AND `StudentID` = :studentId";
         $params = array(
             ':studentId' => $studentId,
             ':sectionId' => $sectionId,
             ':gradeInClass' => $gradeInClass,
-            ':finalExamGrade' => $finalExamGrade,
-            ':finalGrade' => $finalGrade
+            ':grade' => $finalExamGrade
+          
         );
         return $this->updateQuery($sql, $params);
     }
