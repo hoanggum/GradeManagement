@@ -31,72 +31,63 @@
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa-solid fa-school"></span>
-                <span class="title">Phòng ban</span>
+                <span class="title">Quản lí điểm</span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
                     <a href="?page=addDept" title="" class="nav-link">Thêm mới</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=listDept" title="" class="nav-link">Danh sách phòng ban</a>
+                    <a href="?page=listDept" title="" class="nav-link">Danh sách điểm các lớp</a>
                 </li>
             </ul>
         </li>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa-solid fa-people-group"></span>
-                <span class="title">Nhân viên</span>
+                <span class="title">Tổ chức thi</span>
             </a>
             <ul class="sub-menu">
                 
                 <li class="nav-item">
-                    <a href="?page=listPosition" title="" class="nav-link">Chức vụ</a>
+                    <a href="?page=listPosition" title="" class="nav-link">Phòng thi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=listDegree" title="" class="nav-link">Bằng cấp</a>
+                    <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Phân bố phòng thi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Đơn xin nghỉ phép</a>
+                    <a href="?page=listDegree" title="" class="nav-link">Sắp xếp lịch thi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=listInsurance" title="" class="nav-link">Bảo hiểm</a>
+                    <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Phân công lịch thi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=listLaborcontract" title="" class="nav-link">Hợp đồng lao động</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=createEmployee" title="" class="nav-link">Thêm nhân viên</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=listEmployee" title="" class="nav-link">Danh sách nhân viên</a>
+                    <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Quản lí cán bộ coi thi</a>
                 </li>
             </ul>
         </li>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa-solid fa-money-bill"></span>
-                <span class="title">Quản lý lương</span>
+                <span class="title">Quản lý môn học</span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=listSalary" title="" class="nav-link">Bảng lương</a>
+                    <a href="?page=listSalary" title="" class="nav-link">Danh sách môn học</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=createSalary" title="" class="nav-link">Tính lương</a>
+                    <a href="?page=listSalary" title="" class="nav-link">Danh sách học phần</a>
                 </li>
             </ul>
         </li>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa-solid fa-calendar-days"></span>
-                <span class="title">Phân công lịch thi</span>
+                <span class="title">Phân công sinh viên</span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=createSchedule" title="" class="nav-link">Tạo lich công tác</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=listSchedule" title="" class="nav-link">Danh sách lịch công tác</a>
+                    <a href="?page=createSchedule" title="" class="nav-link">Danh sách sinh viên</a>
                 </li>
             </ul>
         </li>
@@ -111,20 +102,6 @@
                 </li>
                 <li class="nav-item">
                     <a href="?page=role" title="" class="nav-link">Quản lí nhóm quyền</a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a href="" title="" class="nav-link nav-toggle">
-                <span class="fa-solid fa-star"></span>
-                <span class="title">Khen thưởng - Kỹ luật</span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item">
-                    <a href="?page=listReward" title="" class="nav-link">Khen thưởng</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=listDiscipline" title="" class="nav-link">Kỹ luật</a>
                 </li>
             </ul>
         </li>
