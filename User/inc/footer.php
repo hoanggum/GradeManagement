@@ -1,4 +1,4 @@
-<footer class="footer">
+<!-- <footer class="footer">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -24,4 +24,4 @@
         var totalVisitors = data.totalVisitors;
         visitorCountElement.innerHTML = 'Đang truy cập: ' + visitorCount + ' | Tổng lượt truy cập: ' + totalVisitors;
     };
-</script>
+</script> -->

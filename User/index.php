@@ -25,7 +25,7 @@ $callFooter = true;
             <?php
             // Main content
             if (file_exists($path)) {
-                if ($page !== 'saveGrades') {
+                if ($page !== 'saveGrades' && $page!=='get_section') {
                     require './inc/header.php';
                     echo '<div class="main-content">';
                 } else {

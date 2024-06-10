@@ -7,12 +7,20 @@ class Teacher extends Db
     {
         $sql = "SELECT t.*, u.FullName
                 FROM teacher t
+                FROM teacher t
                 INNER JOIN users u ON t.UserID = u.UserID
                 WHERE t.UserID = :userId";
         $params = array(':userId' => $userId);
         return $this->selectQuery($sql, $params);
     }
 
+    public function getRegisteredExams($teacherId) {
+        // Thực hiện truy vấn để lấy danh sách các ca thi đã đăng ký gác thi của giáo viên
+        $sql = "SELECT * FROM exam_invigilation WHERE teacher_id = :teacherId";
+        $params = array(':teacherId' => $teacherId);
+        return $this->selectQuery($sql, $params);
+    }
+    
     // Get all sections taught by a teacher
     public function getSectionsByTeacherId($teacherId)
     {
