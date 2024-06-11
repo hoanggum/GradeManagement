@@ -56,7 +56,6 @@ class Exam extends Db {
         return $this->selectQuery($sql, $params);
     }
     
-    // Assign student to room
     public function assignStudentToRoom($examId, $studentId, $roomId) {
         $sql = "INSERT INTO examscheduledetail (Exam_ID, StudentID, room_id)
                 VALUES (:examId, :studentId, :roomId)";
