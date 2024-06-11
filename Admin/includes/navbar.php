@@ -49,14 +49,11 @@
                     <a href="?page=select_schedule" title="" class="nav-link">Phân bố phòng thi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=create_exam" title="" class="nav-link">Sắp xếp lịch thi</a>
+                    <a href="?page=create_exam" title="" class="nav-link">Phân công lịch thi</a>
                 </li>
-                <li class="nav-item">
-                    <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Phân công lịch thi</a>
-                </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Quản lí cán bộ coi thi</a>
-                </li>
+                </li> -->
             </ul>
         </li>
         <li class="nav-item">
@@ -81,20 +78,17 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa fa-pencil-square-o"></span>
                 <span class="title">Quản lý phân quyền</span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=role" title="" class="nav-link">Tạo nhóm quyền</a>
-                </li>
-                <li class="nav-item">
                     <a href="?page=role" title="" class="nav-link">Quản lí nhóm quyền</a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
                 <span class="fa-solid fa-user"></span>

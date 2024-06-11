@@ -22,7 +22,7 @@ if (isset($_POST['exam_id'])) {
     $examInvigilationObj = new ExamInvigilation();
 
     // Kiểm tra thời gian còn lại trước khi hủy
-    $exam = $teacherObj->getRegisteredExamById($teacherId, $examId);
+    // $exam = $teacherObj->getRegisteredExamById($teacherId, $examId);
 
     if ($exam) {
         $examDate = new DateTime($exam['ExamDate']);
@@ -32,7 +32,7 @@ if (isset($_POST['exam_id'])) {
 
         if ($daysUntilExam >= 7) {
             // Xóa lịch gác thi
-            $deleteSuccess = $teacherObj->unregisterExam($teacherId, $examId);
+            // $deleteSuccess = $teacherObj->unregisterExam($teacherId, $examId);
 
             if ($deleteSuccess) {
                 $response['success'] = true;
