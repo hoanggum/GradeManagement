@@ -10,16 +10,7 @@ $teacherInfo = $teacherObj->getTeacherByUserId($teacherId);
 $sections = $teacherObj->getSectionsByTeacherId($teacherId);
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý điểm</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
 
 <body>
 
@@ -28,7 +19,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
         <div class="row mt-3">
             <?php foreach ($sections as $section) : ?>
                 <div class="col-6 mb-3">
-                    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-<?php echo $section['SectionID']; ?>">
+                    <button class="btn btn-primary btn-block" style="width: 100%;" data-toggle="modal" data-target="#modal-<?php echo $section['SectionID']; ?>">
                         Section ID: <?php echo htmlspecialchars($section['SectionID']); ?> - <?php echo htmlspecialchars($section['SubjectName']); ?>
                     </button>
                 </div>
@@ -75,7 +66,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary" onclick="saveGrades(<?php echo $section['SectionID']; ?>, <?php echo $student['StudentID']; ?>)">Lưu</button>
+                        <button type="button" class="btn btn-primary" onclick="saveGrades(<?php echo $section['SectionID']; ?>, <?php echo $student['StudentID']; ?>, '<?php echo $student['semester']; ?>')">Lưu</button>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#import-modal-<?php echo $section['SectionID']; ?>">Import Excel</button>
                     </div>
                 </div>
@@ -110,6 +101,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
     <?php endforeach; ?>
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -136,22 +128,55 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
         });
 
 
-        function saveGrades(sectionID, studentID) {
-            var gradeInClass = $('input[name="gradeInClass[' + studentID + ']"]').val();
-            var grade = $('input[name="grade[' + studentID + ']"]').val();
-            data = {
+        // function saveGrades(sectionID, studentID, semester) {
+        //     var gradeInClass = $('input[name="gradeInClass[' + studentID + ']"]').val();
+        //     var grade = $('input[name="grade[' + studentID + ']"]').val();
+        //     data = {
+        //         sectionID: sectionID,
+        //         studentID: studentID,
+        //         grade: grade,
+        //         gradeInClass: gradeInClass,
+        //         semester: semester
+        //     };
+        //     console.log(data);
+        //     $.ajax({
+        //         url: '?page=saveGrades',
+        //         type: 'POST',
+        //         data: data,
+        //         success: function(response) {
+        //             alert(response);
+        //         },
+        //         error: function(xhr, status, error) {
+        //             // Handle error response
+        //             console.error('Error importing grades:', error);
+        //         }
+        //     });
+        // }
+        function saveGrades(sectionID, semester) {
+            var grades = [];
+            $('tr').each(function() {
+                var studentID = $(this).find('td:first').text();
+                var gradeInClass = $(this).find('.gradeInClass').val();
+                var grade = $(this).find('.grade').val();
+                if (studentID) {
+                    grades.push({
+                        StudentID: studentID,
+                        GradeInClass: gradeInClass,
+                        Grade: grade
+                    });
+                }
+            });
+            var data = {
                 sectionID: sectionID,
-                studentID: studentID,
-                grade: grade,
-                gradeInClass: gradeInClass
+                semester: semester,
+                grades: grades
             };
+            console.log(data);
             $.ajax({
                 url: '?page=saveGrades',
                 type: 'POST',
                 data: data,
-
                 success: function(response) {
-
                     alert(response);
                 },
                 error: function(xhr, status, error) {
@@ -159,7 +184,6 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                     console.error('Error importing grades:', error);
                 }
             });
-
         }
     </script>
 </body>

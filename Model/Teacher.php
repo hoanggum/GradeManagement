@@ -45,19 +45,20 @@ class Teacher extends Db
     }
 
     // Save grades for students in a section
-    public function saveGrade($studentId, $sectionId, $gradeInClass, $finalExamGrade)
+    public function saveGrade($studentId, $sectionId, $gradeInClass, $finalExamGrade, $semester)
     {
-
-        $sql = "UPDATE `student_semester` SET  `Grade` = :grade, `gradeInClass` = :gradeInClass WHERE `SectionID` = :sectionId AND `StudentID` = :studentId";
+        $sql = "UPDATE `student_semester` SET `Grade` = :grade, `gradeInClass` = :gradeInClass WHERE `SectionID` = :sectionId AND `StudentID` = :studentId AND `Semester` = :semester";
         $params = array(
             ':studentId' => $studentId,
             ':sectionId' => $sectionId,
             ':gradeInClass' => $gradeInClass,
-            ':grade' => $finalExamGrade
-
+            ':grade' => $finalExamGrade,
+            ':semester' => $semester
         );
         return $this->updateQuery($sql, $params);
     }
+
+
     public function getSudent_by_Id($student_name)
     {
         $sql_select = "SELECT student.StudentID FROM student LEFT JOIN users ON student.UserID = users.UserID WHERE `FullName`=:students";
