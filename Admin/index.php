@@ -13,6 +13,7 @@ include_once '../Library/Db.class.php';
 $page = isset($_GET['page']) ? $_GET['page'] : 'create_exam';
 
 ?>
+
 <div class="wrapper">
         <div id="sidebar">
             <?php
@@ -42,4 +43,4 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'create_exam';
 <?php
 // Include scripts
 include './includes/scripts.php';
-?>
+?> -->
