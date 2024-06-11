@@ -12,6 +12,7 @@ $gradesBySemester = [];
 foreach ($semesters as $semester) {
     $gradesBySemester[$semester['semester']][] = $semester;
 }
+ksort($gradesBySemester);
 $passedCredits = 0;
 ?>
 <style>
