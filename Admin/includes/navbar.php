@@ -66,10 +66,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=listSalary" title="" class="nav-link">Danh sách môn học</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=listSalary" title="" class="nav-link">Danh sách học phần</a>
+                    <a href="?page=create_section_classes" title="" class="nav-link">Danh sách môn học</a>
                 </li>
             </ul>
         </li>
