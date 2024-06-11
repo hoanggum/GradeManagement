@@ -15,7 +15,7 @@ if (!isset($_SESSION['UserID'])) {
 $teacherId = $_SESSION['TeacherID'];
 $teacherObj = new Teacher();
 $semesterObj = new Semester();
-$page = isset($_GET['page']) ? $_GET['page'] : 'grade_entry';
+$page = isset($_GET['page']) ? $_GET['page'] : 'Home';
 $path = "./View/{$page}.php";
 
 $callFooter = true;

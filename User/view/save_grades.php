@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $grade = $gradeData['Grade'];
         
         // Cập nhật điểm cho sinh viên
-        $teacherObj->saveGrade($sectionID, $studentID, $gradeInClass, $grade);
+        $teacherInfo = $teacherObj->saveGrade($studentID, $sectionID, $gradeInClass, $grade, $semester);
     }
 
     echo json_encode(['status' => 'success']);
