@@ -28,5 +28,13 @@ class ExamRoom extends Db {
         $params = array(':roomId' => $roomId);
         return $this->updateQuery($sql, $params);
     }
+    public function getExamRoomsByExamId($examId) {
+        $sql = "SELECT * 
+                FROM examroom er
+                JOIN examscheduledetail es on es.room_id = er.room_id
+                WHERE Exam_ID = :examId";
+        $params = array(':examId' => $examId);
+        return $this->selectQuery($sql, $params);
+    }
 }
 ?>

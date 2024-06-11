@@ -67,7 +67,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
 <div class="container mt-5">
     <div class="card mb-3">
-        <a href="?page=listExamRoom" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="?page=select_schedule" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
         <div class="card-body">
             <h1 class="card-title font-weight-bold text-primary"><?php echo $room[0]['room_name']; ?></h1>
             <p class="card-text"><strong>Sức chứa:</strong> <?php echo $room[0]['capacity']; ?></p>

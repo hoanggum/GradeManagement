@@ -11,12 +11,12 @@ if ($_SESSION['Role'] != 'Admin') {
 }
 ?>
 <?php
-$page = isset($_GET['page']) ? $_GET['page'] : 'create_exam';
+$page = isset($_GET['page']) ? $_GET['page'] : 'select_schedule';
 $path = "./pages/{$page}.php";
 $callFooter = true;
 
 if (file_exists($path)) {
-    if ($page !== 'saveGrades') {
+    if ($page !== 'saveGrades' && $page !== 'get_exam_rooms') {
 ?>
         <div class="wrapper">
             <div id="sidebar">
@@ -42,7 +42,7 @@ if (file_exists($path)) {
         require "{$path}";
     }
 } else {
-    require "./View/404.php";
+    require "./pages/404.php";
 }
 ?>
 
@@ -50,7 +50,7 @@ if (file_exists($path)) {
 <?php
 if ($callFooter === true) {
 
-    include './includes/footer.php';
+    // include './includes/footer.php';
     include './includes/scripts.php';
 }
 
