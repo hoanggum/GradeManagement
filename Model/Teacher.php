@@ -7,7 +7,6 @@ class Teacher extends Db
     {
         $sql = "SELECT t.*, u.FullName
                 FROM teacher t
-                FROM teacher t
                 INNER JOIN users u ON t.UserID = u.UserID
                 WHERE t.UserID = :userId";
         $params = array(':userId' => $userId);
@@ -67,16 +66,14 @@ class Teacher extends Db
         );
         return $this->selectQuery($sql_select, $parames);
     }
-    public function import_file_excel_point($sectionID, $studentId, $grade, $semester, $gradeInClass)
+    public function import_file_excel_point( $studentId, $grade, $gradeInClass, $sectionId)
     {
-        $sql = "INSERT INTO `student_semester`(`SectionID`, `StudentID`, `Grade`, `semester`, `GradeInClass`) 
-                VALUES (:sectionID, :studentId, :grade, :semester, :gradeInClass)";
+        $sql = "UPDATE `student_semester` SET `Grade` = :grade, `GradeInClass` = :gradeInClass WHERE `StudentID` = :studentId AND `SectionID` = :sectionId";
     
         $params = array(
-            ':sectionID' => $sectionID,
+            ':sectionId' => $sectionId,
             ':studentId' => $studentId,
             ':grade' => $grade,
-            ':semester' => $semester,
             ':gradeInClass' => $gradeInClass
         );
     

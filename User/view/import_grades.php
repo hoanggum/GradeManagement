@@ -18,22 +18,22 @@ if (isset($_POST['btn_import_file_excel'])) {
 
 
             unset($worksheet_arr[0]);
-
+            $sectionID = $_GET['id_setion'];
+          
             foreach ($worksheet_arr as $row) {
                 if (!empty(array_filter($row))) {
-                    $sectionID = $row[0];
+   
                     $studentName = $row[1];
                     if (!empty($studentName)) {
                         $student = $teacherObj->getSudent_by_Id($studentName);
                         $id_student = $student[0]["StudentID"];
                     }
-             
-                    $grade = $row[2];
-                    $semester = $row[3];
-                    $gradeInClass = $row[4];
-                    $result = $teacherObj->import_file_excel_point($sectionID, $id_student, $grade, $semester, $gradeInClass);
+                    $gradeInClass = $row[2];
+                    $grade = $row[4];
+    
+                    $result = $teacherObj->import_file_excel_point( $id_student, $grade, $gradeInClass, $sectionID);
                   
-                    if ($result > 0) {
+                    if ((int)$result > 0) {
                         $success_message = "Dữ liệu đã được nhập thành công từ tệp Excel.";
                     } else {
                         $error_message = "Có lỗi xảy ra trong quá trình nhập dữ liệu.";
@@ -41,14 +41,14 @@ if (isset($_POST['btn_import_file_excel'])) {
                 }
             }
 
-            $redirect_url = "/admin/index.php?page=listSalary";
+            $redirect_url = "/User/index.php?page=grade_entry";
         } else {
             $error_message = "thêm không thành công";
-            $redirect_url = "/admin/index.php?page=listSalary";
+            $redirect_url = "/User/index.php?page=grade_entry";
         }
     } else {
         $error_message = "Không tìm tháy file";
-        $redirect_url = "/admin/index.php?page=listSalary";
+        $redirect_url = "/User/index.php?page=grade_entry";
     }
 }
 

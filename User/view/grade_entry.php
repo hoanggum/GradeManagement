@@ -93,7 +93,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="import-form-<?php echo $section['SectionID']; ?>" method="post" action="?page=import_grades" enctype="multipart/form-data">
+                        <form id="import-form-<?php echo $section['SectionID']; ?>" method="post" action="?page=import_grades&id_setion=<?php echo $section['SectionID'];?>" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="excel-file-<?php echo $section['SectionID']; ?>">Chọn file Excel:</label>
                                 <input type="file" class="form-control-file" id="excel-file-<?php echo $section['SectionID']; ?>" name="excel-file" accept=".xls,.xlsx" required>
