@@ -12,7 +12,10 @@ $gradesBySemester = [];
 foreach ($semesters as $semester) {
     $gradesBySemester[$semester['semester']][] = $semester;
 }
+ksort($gradesBySemester);
 $passedCredits = 0;
+$totalPoints = 0;
+$totalCredits = 0;
 ?>
 <style>
     .grade-report-container {
@@ -122,6 +125,8 @@ s
                                             if ($gradePoint4 != 0.0) {
                                                 $pass = true;
                                                 $passedCredits += $grade['NumOfCredits'];
+                                                $totalPoints += $finalGrade * $grade['NumOfCredits'];
+                                                $totalCredits += $grade['NumOfCredits'];
                                             }
                                         }
                                         else{
@@ -162,10 +167,16 @@ s
                         <p><?php echo $passedCredits; ?></p>
                     </div>
                     <div class="col border-right">
-                        <p></p>
+                        <p>Trung bình tích lũy: </p>
+                    </div>
+                    <div class="col border-right">
+                        <p><?php echo $totalCredits > 0 ? round($totalPoints / $totalCredits, 2) : 'N/A'; ?></p>
+                    </div>
+                    <div class="col border-right">
+                        <p>Thang điểm 4:</p>
                     </div>
                     <div class="col">
-                        <p></p>
+                        <p><?php echo $totalCredits > 0 ? $semesterObj->convertToGradePoint4(round($totalPoints / $totalCredits, 2)) : 'N/A'; ?></p>
                     </div>
                 </div>
             </div>

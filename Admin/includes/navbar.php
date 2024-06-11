@@ -21,11 +21,7 @@
             <ul class="sub-menu">
                 <li class="nav-item">
                     <a href="?page=overview" title="" class="nav-link">Thống kê</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=ListTypicalEmployees" title="" class="nav-link">Danh sách nhân viên tiêu biểu</a>
-                </li>
-                
+                </li>             
             </ul>
         </li>
         <li class="nav-item">
@@ -35,10 +31,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=addDept" title="" class="nav-link">Thêm mới</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=listDept" title="" class="nav-link">Danh sách điểm các lớp</a>
+                    <a href="?page=managemenGrade" title="" class="nav-link">Danh sách điểm các lớp</a>
                 </li>
             </ul>
         </li>
@@ -53,7 +46,7 @@
                     <a href="?page=listExamRoom" title="" class="nav-link">Phòng thi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Phân bố phòng thi</a>
+                    <a href="?page=select_schedule" title="" class="nav-link">Phân bố phòng thi</a>
                 </li>
                 <li class="nav-item">
                     <a href="?page=create_exam" title="" class="nav-link">Sắp xếp lịch thi</a>
@@ -73,10 +66,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=listSalary" title="" class="nav-link">Danh sách môn học</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=listSalary" title="" class="nav-link">Danh sách học phần</a>
+                    <a href="?page=create_section_classes" title="" class="nav-link">Danh sách môn học</a>
                 </li>
             </ul>
         </li>

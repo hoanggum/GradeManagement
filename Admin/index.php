@@ -11,12 +11,12 @@ if ($_SESSION['Role'] != 'Admin') {
 }
 ?>
 <?php
-$page = isset($_GET['page']) ? $_GET['page'] : 'create_exam';
+$page = isset($_GET['page']) ? $_GET['page'] : 'list_supervisor';
 $path = "./pages/{$page}.php";
 $callFooter = true;
 
 if (file_exists($path)) {
-    if ($page !== 'xl_create_exam') {
+    if ($page !== 'saveGrades' && $page !== 'get_exam_rooms'&& $page !== 'add_section'&& $page !== 'get_sections' && $page !== 'xl_create_exam') {
 ?>
         <div class="wrapper">
             <div id="sidebar">
@@ -42,7 +42,7 @@ if (file_exists($path)) {
         require "{$path}";
     }
 } else {
-    require "./View/404.php";
+    require "./pages/404.php";
 }
 ?>
 
@@ -50,7 +50,7 @@ if (file_exists($path)) {
 <?php
 if ($callFooter === true) {
 
-    include './includes/footer.php';
+    // include './includes/footer.php';
     include './includes/scripts.php';
 }
 

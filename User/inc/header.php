@@ -3,6 +3,7 @@
 
     $userController = new User();
     $employee = $userController->getUserById($_SESSION['UserID']);
+    $role = $_SESSION['Role'];
 
 ?>
 <!DOCTYPE html>
@@ -29,19 +30,35 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?page=Home">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=grade_entry">Quản lí điểm</a>
-                    </li>
+                    
+                    <?php if ($_SESSION['Role'] === 'Admin'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=admin_dashboard">Admin Dashboard</a>
+                        </li>
+                    
+                    <?php endif; ?>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=academic_outcomes">Kết quả học tập</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=supervisor_register">Đăng kí gác thi </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=register_section">Đăng kí học phần</a>
-                    </li>
+                    <?php if ($_SESSION['Role'] === 'Teacher'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=grade_entry">Quản lí điểm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=supervisor_register">Đăng kí gác thi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=view_supervisor_schedule">Lịch gác thi của tôi</a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if ($_SESSION['Role'] === 'Student'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=academic_outcomes">Kết quả học tập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=register_section">Đăng kí học phần</a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
                         <a class="nav-link" href="https://huit.edu.vn/vien-chuc/tin-tuc-to-chuc-nhan-su.html">Tin Tức</a>
                     </li>
@@ -56,20 +73,21 @@
     </nav>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="account-display" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">User Name</h5>
+        <h5 class="offcanvas-title" id="offcanvasRightLabel"><?php echo $_SESSION['FullName']; ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>     
     </div>
     <div class="offcanvas-body">
         <div class="modal-avt-img">
-            <a href="#"> <!-- Link to My Account -->
-
+            <a href="#">
                 <img src="../img/<?php echo $employee[0]['ImageURL']; ?>" alt="User Name" style="border-radius: 50%;">
             </a>
         </div>
         <div class="modal-body-content d-flex flex-column">
-            <a href="#">Go to Main</a>
+            <a href="?page=Home">Go to Main</a>
             <a href="?page=profile">My Account</a>
             <a href="../logout.php">Log out</a>
         </div>
     </div>
 </div>
+</body>
+</html>

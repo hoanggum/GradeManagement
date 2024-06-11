@@ -55,6 +55,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             }
             $response['success'] = true;
             $response['role'] = $user['Role'];
+            
+            if ($user['Role'] === 'Admin') {
+                $response['redirect'] = 'Admin/index.php';
+            } else {
+                $response['redirect'] = 'User/index.php';
+            }
         } else {
             $response['error'] = "Mật khẩu không chính xác.";
         }

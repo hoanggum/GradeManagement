@@ -6,8 +6,9 @@ $studentId = $_SESSION['StudentID'];
 
 if (isset($_GET['subjectId'])) {
     $subjectId = intval($_GET['subjectId']);
+    $semester = intval($_GET['semester']);
     $subjectSectionObj = new SubjectSection();
-    $sections = $subjectSectionObj->getSectionsBySubjectId($subjectId);
+    $sections = $subjectSectionObj->getSectionsBySubjectId($subjectId,$semester);
 
     // Generate HTML for sections
     if ($sections) {
