@@ -53,17 +53,35 @@ $subjects = $subjectObj->getAllSubjects();
 <script>
 function loadSections(subjectId) {
     $.ajax({
-        url: '?page=get_sections.php',
+      
+        url: '?page=get_section',
         type: 'GET',
         data: { subjectId: subjectId },
         success: function(response) {
-            $('#sections-container').html(response);
+           $('#sections-container').html(response);
         },
         error: function(xhr, status, error) {
             console.error('Error loading sections:', error);
         }
     });
 }
+function registerSection(sectionId, semester, studentId) {
+
+    if (confirm("Are you sure you want to register for this section?")) {
+        $.ajax({
+            url: '?page=Process_register_section',
+            type: 'POST',
+            data: { sectionId: sectionId, studentId: studentId, semester: semester },
+            success: function(response) {
+                alert(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error registering section:', error);
+            }
+        });
+    }
+}
+
 </script>
 </body>
 </html>
