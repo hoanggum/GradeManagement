@@ -177,7 +177,48 @@ $employee = $userController->getUserById($_SESSION['UserID']);
             <input id="user-email" name="user-email" type="text" value="<?php echo $employee[0]['Email']; ?>" placeholder="example@gmail.com" class="disabled-input">
         </div>
     </div>
-    
+    <div class="row account-info-content justify-content-center">
+        <div id="password-box" class="account-info-item">
+            <div class="account-info-item-header">
+                <section class="account-info-item-title">
+                    Password
+                </section>
+                <button class="account-info-edit-btn" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                    Edit
+                </button>
+            </div>
+            <input id="password" name="password" type="password" value="<?php echo $employee[0]['Password']; ?>" placeholder="*********" class="disabled-input" disabled>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="background-color: gray;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passwordModalLabel">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="passwordForm" method="POST" action="?page=change_password" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="currentPassword" class="form-label">Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newPassword" class="form-label">New Password</label>
+                    <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required>
+                </div>
+                <button type="submit" name="submitPassword" id="submitPassword" class="btn btn-dark" style="width: 100%;">Save Changes</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
     <div class="row account-info-content justify-content-center">
         <div id="phonenumber-box" class="account-info-item">
             <div class="account-info-item-header">
@@ -225,49 +266,7 @@ $employee = $userController->getUserById($_SESSION['UserID']);
         </div>
     </div>
     </form>
-    <div class="row account-info-content justify-content-center">
-        <!-- còn -->
-        <div id="password-box" class="account-info-item">
-            <div class="account-info-item-header">
-                <section class="account-info-item-title">
-                    Password
-                </section>
-                <button class="account-info-edit-btn" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                    Edit
-                </button>
-            </div>
-            <input id="password" name="password" type="password" value="<?php echo $employee[0]['Password']; ?>" placeholder="*********" class="disabled-input" disabled>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="background-color: gray;">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="passwordModalLabel">Change Password</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="passwordForm" method="POST" action="?page=change_password" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="currentPassword" class="form-label">Current Password</label>
-                    <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
-                </div>
-                <div class="mb-3">
-                    <label for="newPassword" class="form-label">New Password</label>
-                    <input type="password" class="form-control" id="newPassword" name="newPassword" required>
-                </div>
-                <div class="mb-3">
-                    <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
-                    <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required>
-                </div>
-                <button type="submit" name="submitPassword" id="submitPassword" class="btn btn-dark" style="width: 100%;">Save Changes</button>
-                </form>
-            </div>
-            </div>
-        </div>
-        </div>
-
-    </div>
+    
 </div>
 
 <input type="file" id="fileInput" style="display: none;" accept="image/*">
