@@ -77,7 +77,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=createSchedule" title="" class="nav-link">Danh sách sinh viên</a>
+                    <a href="?page=list_student" title="" class="nav-link">Danh sách sinh viên</a>
                 </li>
             </ul>
         </li>
