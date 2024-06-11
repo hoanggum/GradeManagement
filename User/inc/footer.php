@@ -1,8 +1,8 @@
-<!-- <footer class="footer">
+<footer class="footer">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <!-- Nội dung khác của footer -->
+                
             </div>
             <div class="col-md-6">
                 <div class="text-end">
@@ -24,4 +24,4 @@
         var totalVisitors = data.totalVisitors;
         visitorCountElement.innerHTML = 'Đang truy cập: ' + visitorCount + ' | Tổng lượt truy cập: ' + totalVisitors;
     };
-</script> -->
+</script>
