@@ -21,11 +21,7 @@
             <ul class="sub-menu">
                 <li class="nav-item">
                     <a href="?page=overview" title="" class="nav-link">Thống kê</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=ListTypicalEmployees" title="" class="nav-link">Danh sách nhân viên tiêu biểu</a>
-                </li>
-                
+                </li>             
             </ul>
         </li>
         <li class="nav-item">
@@ -35,10 +31,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="?page=addDept" title="" class="nav-link">Thêm mới</a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=listDept" title="" class="nav-link">Danh sách điểm các lớp</a>
+                    <a href="?page=managemenGrade" title="" class="nav-link">Danh sách điểm các lớp</a>
                 </li>
             </ul>
         </li>

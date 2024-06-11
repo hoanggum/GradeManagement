@@ -5,7 +5,7 @@ class Subject extends Db {
         $sql = "SELECT * FROM subjects";
         return $this->selectQuery($sql);
     }
-
+    
     public function getSubjectsByDepartmentAndSemester($departmentId, $semester) {
         $sql = "SELECT sj.SubjectID, sj.SubjectName
                 FROM subjects sj
