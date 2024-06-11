@@ -10,6 +10,19 @@ class Exam extends Db {
                 INNER JOIN examroom er ON era.room_id = er.room_id";
         return $this->selectQuery($sql);
     }
+    public function createExamSchedule($subjectId, $examDate, $examTime, $duration, $examRound, $roomId) {
+        $sql = "INSERT INTO examschedule (SubjectID, ExamDate, ExamTime, Duration, ExamRound, Room_ID)
+                VALUES (:subjectId, :examDate, :examTime, :duration, :examRound, :roomId)";
+        $params = array(
+            ':subjectId' => $subjectId,
+            ':examDate' => $examDate,
+            ':examTime' => $examTime,
+            ':duration' => $duration,
+            ':examRound' => $examRound,
+            ':roomId' => $roomId
+        );
+        return $this->updateQuery($sql, $params);
+    }
 
     public function getExamById($examId) {
         $sql = "SELECT * FROM examschedule WHERE Exam_ID = :examId";

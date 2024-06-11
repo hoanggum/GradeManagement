@@ -6,6 +6,18 @@ class Subject extends Db {
         return $this->selectQuery($sql);
     }
 
+    public function getSubjectsByDepartmentAndSemester($departmentId, $semester) {
+        $sql = "SELECT sj.SubjectID, sj.SubjectName
+                FROM subjects sj
+                INNER JOIN subjects_section ss ON sj.SubjectID = ss.SubjectID
+                WHERE ss.DepartmentID = :departmentId AND ss.Semester = :semester";
+        $params = array(
+            ':departmentId' => $departmentId,
+            ':semester' => $semester
+        );
+        return $this->selectQuery($sql, $params);
+    }
+    
     public function getSubjectById($subjectId) {
         $sql = "SELECT * FROM subjects WHERE SubjectID = :subjectId";
         $params = array(':subjectId' => $subjectId);
