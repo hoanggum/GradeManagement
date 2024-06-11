@@ -2,6 +2,7 @@
     include_once '../Model/User.php';
 
     $userController = new User();
+    
     $employee = $userController->getUserById($_SESSION['UserID']);
 
 ?>

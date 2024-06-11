@@ -56,7 +56,7 @@
                     <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Phân bố phòng thi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=listDegree" title="" class="nav-link">Sắp xếp lịch thi</a>
+                    <a href="?page=create_exam" title="" class="nav-link">Sắp xếp lịch thi</a>
                 </li>
                 <li class="nav-item">
                     <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Phân công lịch thi</a>
