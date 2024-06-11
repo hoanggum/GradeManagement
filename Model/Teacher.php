@@ -48,6 +48,7 @@ class Teacher extends Db
     public function saveGrade($studentId, $sectionId, $gradeInClass, $finalExamGrade, $semester)
     {
         $sql = "UPDATE `student_semester` SET `Grade` = :grade, `gradeInClass` = :gradeInClass WHERE `SectionID` = :sectionId AND `StudentID` = :studentId AND `Semester` = :semester";
+        
         $params = array(
             ':studentId' => $studentId,
             ':sectionId' => $sectionId,
