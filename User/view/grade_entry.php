@@ -155,6 +155,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
         function saveGrades(sectionID, semester) {
         var grades = [];
         $('#modal-' + sectionID + ' tbody tr').each(function() {
+        
             var studentID = $(this).find('td:first').text();
             var gradeInClass = $(this).find('input.gradeInClass').val();
             var grade = $(this).find('input.grade').val();
