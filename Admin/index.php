@@ -16,7 +16,7 @@ $path = "./pages/{$page}.php";
 $callFooter = true;
 
 if (file_exists($path)) {
-    if ($page !== 'saveGrades' && $page !== 'get_exam_rooms') {
+    if ($page !== 'saveGrades' && $page !== 'get_exam_rooms'&& $page !== 'add_section'&& $page !== 'get_sections' ) {
 ?>
         <div class="wrapper">
             <div id="sidebar">
