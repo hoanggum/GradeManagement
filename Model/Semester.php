@@ -22,6 +22,15 @@ class Semester extends Db {
         $params = array(':semester' => $semester);
         return $this->selectQuery($sql, $params);
     }
+    public function register($sectionId, $studentId, $semester) {
+        $sql = "INSERT INTO student_semester (SectionID, StudentID, semester) VALUES (:sectionId, :studentId, :semester)";
+        $params = array(
+            ':sectionId' => $sectionId,
+            ':studentId' => $studentId,
+            ':semester' => $semester
+        );
+        return $this->updateQuery($sql, $params);
+    }
 
     public function addSemester($sectionId, $studentId, $grade, $semester) {
         $sql = "INSERT INTO student_semester (SectionID, StudentID, Grade, semester) VALUES (:sectionId, :studentId, :grade, :semester)";
