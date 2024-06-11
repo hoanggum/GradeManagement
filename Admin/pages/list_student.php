@@ -41,23 +41,29 @@
 
     <script>
     $(document).ready(function(){
-        loadStudents(); // Load toàn bộ sinh viên khi trang được tải
+        loadDepartments(); // Load danh sách các khoa khi trang được tải
+        loadStudents(); // Load danh sách sinh viên khi trang được tải
 
-        // Hàm để load danh sách các khoa
         function loadDepartments() {
             $.ajax({
                 url: '../Admin/pages/get_departments.php',
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    $('#departmentSelect').append(response.map(department => 
-                        `<option value="${department.DepartmentID}">${department.DepartmentName}</option>`
-                    ));
+                    if (response.length) {
+                        $('#departmentSelect').append(response.map(department => 
+                            `<option value="${department.DepartmentID}">${department.DepartmentName}</option>`
+                        ));
+                    } else {
+                        console.log("No departments found");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Failed to load departments:", status, error);
                 }
             });
         }
 
-        // Hàm để load danh sách các lớp thuộc khoa
         $('#departmentSelect').change(function() {
             const departmentId = $(this).val();
             if(departmentId) {
@@ -67,19 +73,26 @@
                     data: { departmentId: departmentId },
                     dataType: 'json',
                     success: function(response) {
-                        $('#classSelect').empty().append('<option value="">----</option>');
-                        $('#classSelect').append(response.map(cls => 
-                            `<option value="${cls.ClassID}">${cls.className}</option>`
-                        ));
+                        if (response.length) {
+                            $('#classSelect').empty().append('<option value="">----</option>');
+                            $('#classSelect').append(response.map(cls => 
+                                `<option value="${cls.ClassID}">${cls.className}</option>`
+                            ));
+                        } else {
+                            console.log("No classes found for department:", departmentId);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Failed to load classes:", status, error);
                     }
                 });
             } else {
                 $('#classSelect').empty().append('<option value="">----</option>');
             }
-            loadStudents();
+            loadStudents(); // Load danh sách sinh viên khi thay đổi khoa
         });
 
-        // Hàm để load danh sách sinh viên
+
         function loadStudents(page = 1) {
             const departmentId = $('#departmentSelect').val();
             const classId = $('#classSelect').val();
@@ -96,13 +109,19 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    $('#studentTableContainer').html(generateStudentTable(response.students));
-                    generatePagination(response.totalPages, page);
+                    if (response.students.length) {
+                        $('#studentTableContainer').html(generateStudentTable(response.students));
+                        generatePagination(response.totalPages, page);
+                    } else {
+                        $('#studentTableContainer').html('<p>No students found</p>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Failed to load students:", status, error);
                 }
             });
         }
 
-        // Hàm để tạo bảng hiển thị danh sách sinh viên
         function generateStudentTable(students) {
             let tableHtml = `<table style="width: 100%; border-collapse: collapse;">
                 <thead>
@@ -118,7 +137,7 @@
                 tableHtml += `<tr>
                     <td style="border: 1px solid #ddd; padding: 8px;">${student.StudentID}</td>
                     <td style="border: 1px solid #ddd; padding: 8px;">${student.FullName}</td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">${student.className}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">${student.ClassName}</td>
                     <td style="border: 1px solid #ddd; padding: 8px;">${student.DepartmentName}</td>
                 </tr>`;
             });
@@ -126,7 +145,6 @@
             return tableHtml;
         }
 
-        // Hàm để tạo phân trang
         function generatePagination(totalPages, currentPage) {
             let paginationHtml = '';
             for (let i = 1; i <= totalPages; i++) {
@@ -142,11 +160,9 @@
             });
         }
 
-        // Load danh sách sinh viên khi thay đổi lớp hoặc tìm kiếm
         $('#classSelect').change(loadStudents);
         $('#searchInput').keyup(loadStudents);
 
-        // Tìm kiếm khi click nút
         $('#searchButton').click(function() {
             loadStudents();
         });
