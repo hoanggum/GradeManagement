@@ -66,7 +66,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary" onclick="saveGrades(<?php echo $section['SectionID']; ?>, <?php echo $student['StudentID']; ?>, '<?php echo $student['semester']; ?>')">Lưu</button>
+                        <button type="button" class="btn btn-primary" onclick="saveGrades(<?php echo $section['SectionID']; ?>, <?php echo $student['StudentID']; ?>, <?php echo $student['semester']; ?>)">Lưu</button>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#import-modal-<?php echo $section['SectionID']; ?>">Import Excel</button>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="import-form-<?php echo $section['SectionID']; ?>" method="post" action="?page=import_grades&id_setion=<?php echo $section['SectionID'];?>" enctype="multipart/form-data">
+                        <form id="import-form-<?php echo $section['SectionID']; ?>" method="post" action="?page=import_grades&id_setion=<?php echo $section['SectionID']; ?>" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="excel-file-<?php echo $section['SectionID']; ?>">Chọn file Excel:</label>
                                 <input type="file" class="form-control-file" id="excel-file-<?php echo $section['SectionID']; ?>" name="excel-file" accept=".xls,.xlsx" required>
@@ -128,62 +128,47 @@ $sections = $teacherObj->getSectionsByTeacherId($teacherId);
         });
 
 
-        // function saveGrades(sectionID, studentID, semester) {
-        //     var gradeInClass = $('input[name="gradeInClass[' + studentID + ']"]').val();
-        //     var grade = $('input[name="grade[' + studentID + ']"]').val();
-        //     data = {
-        //         sectionID: sectionID,
-        //         studentID: studentID,
-        //         grade: grade,
-        //         gradeInClass: gradeInClass,
-        //         semester: semester
-        //     };
-        //     console.log(data);
-        //     $.ajax({
-        //         url: '?page=saveGrades',
-        //         type: 'POST',
-        //         data: data,
-        //         success: function(response) {
-        //             alert(response);
-        //         },
-        //         error: function(xhr, status, error) {
-        //             // Handle error response
-        //             console.error('Error importing grades:', error);
-        //         }
-        //     });
-        // }
-        function saveGrades(sectionID, semester) {
+        function saveGrades(sectionID, studentID, semester) {
             var grades = [];
-            $('tr').each(function() {
-                var studentID = $(this).find('td:first').text();
-                var gradeInClass = $(this).find('.gradeInClass').val();
-                var grade = $(this).find('.grade').val();
-                if (studentID) {
-                    grades.push({
-                        StudentID: studentID,
-                        GradeInClass: gradeInClass,
-                        Grade: grade
-                    });
-                }
+            $('#modal-' + sectionID + ' tbody tr').each(function() {
+                //var studentID = studentID;
+                var gradeInClass = $(this).find('input.gradeInClass').val();
+                var grade = $(this).find('input.grade').val();
+
+                grades.push({
+                    StudentID: studentID,
+                    GradeInClass: gradeInClass,
+                    Grade: grade
+                });
             });
+
             var data = {
                 sectionID: sectionID,
                 semester: semester,
                 grades: grades
+
             };
-            console.log(data);
+
+
             $.ajax({
                 url: '?page=saveGrades',
                 type: 'POST',
                 data: data,
+                dataType: 'json', 
                 success: function(response) {
-                    alert(response);
+                    console.log(response);
+                    if (response.status === 'success') {
+                        alert(response.message);
+                    } else {
+                        alert('Đã xảy ra lỗi: ' + response.message);
+                    }
                 },
                 error: function(xhr, status, error) {
-                    // Handle error response
-                    console.error('Error importing grades:', error);
+                    console.error('Lỗi khi nhập điểm:', error);
                 }
             });
+
+
         }
     </script>
 </body>
