@@ -93,7 +93,7 @@
 
             // Gửi yêu cầu AJAX để thêm lớp học phần
             $.ajax({
-                url: '../Admin/view/add_section.php',
+                url: '../Admin/pages/add_section.php',
                 type: 'POST',
                 data: {
                     className: className,
