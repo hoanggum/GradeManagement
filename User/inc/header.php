@@ -65,7 +65,7 @@
                 </ul>
                 <div class="avt-img">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#account-display" aria-controls="account-display">
-                        <img src="Img/<?php echo $_SESSION['ImageURL']; ?>" alt="User Name" style="width: 40px;height: 40px;border-radius: 50%;">
+                        <img src="../img/<?php echo $employee[0]['ImageURL']; ?>" alt="User Name" style="width: 40px;height: 40px;border-radius: 50%;">
                     </a>             
                 </div>
             </div>
@@ -79,7 +79,7 @@
     <div class="offcanvas-body">
         <div class="modal-avt-img">
             <a href="#">
-                <img src="../img/<?php echo $_SESSION['ImageURL']; ?>" alt="User Name" style="border-radius: 50%;">
+                <img src="../img/<?php echo $employee[0]['ImageURL']; ?>" alt="User Name" style="border-radius: 50%;">
             </a>
         </div>
         <div class="modal-body-content d-flex flex-column">
