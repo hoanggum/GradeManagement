@@ -2,14 +2,14 @@
 <?php
 include_once '../config.php';
 include_once '../Library/Db.class.php';
-// if(!isset($_SESSION)) session_start();
-// if(!isset($_SESSION['UserID'])){
-//     header('location: ../index.html');exit;
-// }
-// if ($_SESSION['Role'] != 'Admin') {
-//     header('Location: ../user/index.php');
-//     exit();
-// }
+if(!isset($_SESSION)) session_start();
+if(!isset($_SESSION['UserID'])){
+    header('location: ../index.html');exit;
+}
+if ($_SESSION['Role'] != 'Admin') {
+    header('Location: ../user/index.php');
+    exit();
+}
 $page = isset($_GET['page']) ? $_GET['page'] : 'create_exam';
 
 ?>
