@@ -16,7 +16,7 @@ $path = "./pages/{$page}.php";
 $callFooter = true;
 
 if (file_exists($path)) {
-    if ($page !== 'saveGrades') {
+    if ($page !== 'xl_create_exam') {
 ?>
         <div class="wrapper">
             <div id="sidebar">

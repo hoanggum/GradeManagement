@@ -32,12 +32,9 @@ class Db
     {
         $stm = $this->conn->prepare($sql);
         $stm->execute($arr);
-
-
-     
         return $stm->rowCount();
     }
-
+    
 
     function insert_query($sql)
     {
