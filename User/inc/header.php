@@ -1,3 +1,11 @@
+<?php
+    include_once '../Model/User.php';
+
+    $userController = new User();
+    $employee = $userController->getUserById($_SESSION['UserID']);
+    $role = $_SESSION['Role'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

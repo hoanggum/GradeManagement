@@ -50,7 +50,7 @@
             <ul class="sub-menu">
                 
                 <li class="nav-item">
-                    <a href="?page=listPosition" title="" class="nav-link">Phòng thi</a>
+                    <a href="?page=listExamRoom" title="" class="nav-link">Phòng thi</a>
                 </li>
                 <li class="nav-item">
                     <a href="?page=managerLeaveApplicationSheet" title="" class="nav-link">Phân bố phòng thi</a>

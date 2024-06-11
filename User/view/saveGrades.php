@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_SESSION['TeacherID'])) {
     exit('Phiên làm việc không hợp lệ. Vui lòng đăng nhập lại.');
 }
@@ -15,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $semester = $_POST['semester'];
     $grades = $_POST['grades'];
 
-
     foreach ($grades as $gradeData) {
         if (!isset($gradeData['StudentID']) || !isset($gradeData['GradeInClass']) || !isset($gradeData['Grade'])) {
             echo json_encode(['status' => 'error', 'message' => 'Dữ liệu không hợp lệ']);
@@ -25,11 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $studentID = $gradeData['StudentID'];
         $gradeInClass = $gradeData['GradeInClass'];
         $grade = $gradeData['Grade'];
+
         
         $teacherInfo = $teacherObj->saveGrade($studentID, $sectionID, $gradeInClass, $grade, $semester);
     }
 
-    echo json_encode(['status' => 'success', 'message' => 'Cap nhat diem thanh cong']);
+    echo json_encode(['status' => 'success', 'message' => 'Cập nhật điểm thành công']);
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
 }

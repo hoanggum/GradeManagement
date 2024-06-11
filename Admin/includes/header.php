@@ -1,4 +1,10 @@
+<?php
+    include_once '../Model/User.php';
 
+    $userController = new User();
+    $employee = $userController->getUserById($_SESSION['UserID']);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 
     <title>Trang Admin</title>
@@ -29,7 +36,7 @@
             <div class="header-right col-2">
                 <div class="avt-img">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#account-display" aria-controls="account-display">
-                        <img src="" alt="User Name">
+                        <img src="../img/<?php echo $employee[0]['ImageURL']; ?>" alt="User Name">
                     </a>
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="account-display" aria-labelledby="offcanvasRightLabel">
                         <div class="offcanvas-header">
@@ -40,7 +47,7 @@
                         <div class="offcanvas-body">
                             <div class="modal-avt-img">
                                 <a href="#"> <!-- Link to My Account -->
-                                    <img src="" alt="User Name">
+                                    <img src="../img/<?php echo $employee[0]['ImageURL']; ?>" alt="User Name">
                                 </a>
                             </div>
                             <div class="modal-body-content d-flex flex-column">
