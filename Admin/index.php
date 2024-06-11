@@ -11,7 +11,7 @@ if ($_SESSION['Role'] != 'Admin') {
 }
 ?>
 <?php
-$page = isset($_GET['page']) ? $_GET['page'] : 'select_schedule';
+$page = isset($_GET['page']) ? $_GET['page'] : 'create_section_classes';
 $path = "./pages/{$page}.php";
 $callFooter = true;
 
