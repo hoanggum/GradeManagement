@@ -3,6 +3,7 @@
 
     $userController = new User();
     $employee = $userController->getUserById($_SESSION['UserID']);
+    $role = $_SESSION['Role'];
 
 ?>
 <!DOCTYPE html>
@@ -29,19 +30,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?page=Home">Trang chủ</a>
                     </li>
+                    <?php if ($role !== 'Student'):?>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=grade_entry">Quản lí điểm</a>
                     </li>
-
+                    <?php endif; ?>
+                    <?php if ($role !== 'Teacher'):?>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=academic_outcomes">Kết quả học tập</a>
                     </li>
+                    <?php endif; ?>
+
+                    <?php if ($role !== 'Student'):?>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=supervisor_register">Đăng kí gác thi </a>
                     </li>
+                    <?php endif; ?>
+                    <?php if ($role !== 'Teacher'):?>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=register_section">Đăng kí học phần</a>
                     </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
                         <a class="nav-link" href="https://huit.edu.vn/vien-chuc/tin-tuc-to-chuc-nhan-su.html">Tin Tức</a>
                     </li>
