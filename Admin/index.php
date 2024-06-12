@@ -11,7 +11,7 @@ if ($_SESSION['Role'] != 'Admin') {
 }
 ?>
 <?php
-$page = isset($_GET['page']) ? $_GET['page'] : 'list_supervisor';
+$page = isset($_GET['page']) ? $_GET['page'] : 'overview';
 $path = "./pages/{$page}.php";
 $callFooter = true;
 
