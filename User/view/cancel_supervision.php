@@ -9,7 +9,7 @@ $response = array('success' => false, 'message' => '');
 
 // Kiểm tra người dùng đã đăng nhập và có vai trò là Teacher
 if (!isset($_SESSION['TeacherID'])) {
-    $response['message'] = "Bạn không có quyền hủy lịch gác thi này.";
+    $response['message'] = "Không thể hủy đăng ký gác thi khi chỉ còn ít hơn 7 ngày hoặc bạn không có quyền hủy.";
     echo json_encode($response);
     exit();
 }
@@ -22,7 +22,7 @@ if (isset($_POST['exam_id'])) {
     $examInvigilationObj = new ExamInvigilation();
 
     // Kiểm tra thời gian còn lại trước khi hủy
-    // $exam = $teacherObj->getRegisteredExamById($teacherId, $examId);
+    $exam = $teacherObj->getRegisteredExamById($teacherId, $examId);
 
     if ($exam) {
         $examDate = new DateTime($exam['ExamDate']);
@@ -32,7 +32,7 @@ if (isset($_POST['exam_id'])) {
 
         if ($daysUntilExam >= 7) {
             // Xóa lịch gác thi
-            // $deleteSuccess = $teacherObj->unregisterExam($teacherId, $examId);
+            $deleteSuccess = $teacherObj->unregisterExam($teacherId, $examId);
 
             if ($deleteSuccess) {
                 $response['success'] = true;

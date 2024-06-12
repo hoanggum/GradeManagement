@@ -80,7 +80,6 @@
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                console.log(response); // In ra dữ liệu trả về trong Console
                 $('#scheduleTable tbody').empty(); // Xóa dữ liệu cũ trước khi load dữ liệu mới
                 $.each(response, function(index, schedule) {
                     var row = '<tr>' +
