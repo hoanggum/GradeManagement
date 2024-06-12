@@ -12,7 +12,10 @@ if (!isset($_SESSION['UserID'])) {
     header('location: ../index.html');
     exit;
 }
-$teacherId = $_SESSION['TeacherID'];
+if (isset($_SESSION['TeacherID'])) {
+    $teacherId = $_SESSION['TeacherID'];
+    exit;
+}
 $teacherObj = new Teacher();
 $semesterObj = new Semester();
 $page = isset($_GET['page']) ? $_GET['page'] : 'Home';

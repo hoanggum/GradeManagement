@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $ExamObj = new Exam();
     $examId = $ExamObj->createExam($examDate, $examTime, $duration, $subjectId);
-
+    
     if ($examId) {
         // Lấy số lượng sinh viên trong lớp học
         $totalStudents = $ExamObj->countTotalStudentsInSubject($subjectId);

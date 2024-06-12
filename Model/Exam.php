@@ -111,7 +111,7 @@ class Exam extends Db
     public function createExam($examDate, $examTime, $duration, $sectionId)
     {
 
-        $sql = "INSERT INTO examschedule (ExamDate, ExamTime, Duration, section_ID) VALUES (:examDate, :examTime, :duration, :sectionId)";
+        $sql = "INSERT INTO `examschedule`(`ExamDate`, `ExamTime`, `Duration`, `section_ID`) VALUES (:examDate, :examTime, :duration, :sectionId)";
         $params = array(
             ':examDate' => $examDate,
             ':examTime' => $examTime,
@@ -119,8 +119,9 @@ class Exam extends Db
             ':sectionId' => $sectionId
 
         );
-
+        
         if ($this->updateQuery($sql, $params)) {
+
             return $this->lastInsertId();
         } else {
             return false;

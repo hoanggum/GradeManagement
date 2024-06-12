@@ -87,14 +87,14 @@
                     duration: duration
                 },
                 success: function(response) {
-                    alert(response);
-                    //var result = JSON.parse(response);
+                    //console.log(response);
+                    var result = JSON.parse(response);
 
-                    // if (result.success) {
-                    //     alert('Lịch thi và phân chia học sinh vào phòng thi đã được tạo thành công!');
-                    // } else {
-                    //     alert('Đã tạo lịch thi nhưng gặp lỗi khi phân chia học sinh vào phòng thi.');
-                    // }
+                    if (result.success) {
+                        alert('Lịch thi và phân chia học sinh vào phòng thi đã được tạo thành công!');
+                    } else {
+                        alert('Đã tạo lịch thi nhưng gặp lỗi khi phân chia học sinh vào phòng thi.');
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error('Lỗi khi tạo lịch thi:', error);
