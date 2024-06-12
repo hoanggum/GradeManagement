@@ -14,7 +14,6 @@ if (!isset($_SESSION['UserID'])) {
 }
 if (isset($_SESSION['TeacherID'])) {
     $teacherId = $_SESSION['TeacherID'];
-    exit;
 }
 $teacherObj = new Teacher();
 $semesterObj = new Semester();
