@@ -41,12 +41,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['exam_ids'])) {
         }
 
         $db->commit();
-        echo "Đăng ký gác thi thành công.";
+        $success_message = "Đăng kí gác thi thành công.";
+        $redirect_url = "/User/index.php?page=view_supervisor_schedule";
     } catch (Exception $e) {
         $db->rollBack();
-        echo "Có lỗi xảy ra khi đăng ký gác thi: " . $e->getMessage();
+        $error_message = "Có lỗi xảy ra khi đăng ký gác thi: " . $e->getMessage();
+        $redirect_url = "/User/index.php?page=supervisor_register";
     }
 } else {
-    echo "Không có ca thi nào được chọn.";
+    $error_message = "Không có ca thi nào được chọn..";
+    $redirect_url = "/User/index.php?page=supervisor_register";
+
 }
+
+echo "<script>";
+if (isset($success_message)) {
+    echo "alert('$success_message');";
+}
+if (isset($error_message)) {
+    echo "alert('$error_message');";
+}
+echo "window.location='$redirect_url';";
+echo "</script>";
 ?>

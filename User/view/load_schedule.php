@@ -1,13 +1,16 @@
 <?php
-require_once '../../config.php';
-require_once BASE_PATH . '/Library/Db.class.php';
+// require_once '../../config.php';
+// require_once BASE_PATH . '/Library/Db.class.php';
 require_once BASE_PATH . '/Model/Exam.php';
 require_once BASE_PATH . '/Model/Teacher.php';
 require_once BASE_PATH . '/Model/ExamInvigilation.php';
 
-// Khởi tạo các đối tượng và thực hiện các truy vấn cần thiết
+// Khởi tạo các đối tượng và thực hiện các truy vấn cần thiết\
+if (isset($_SESSION['TeacherID'])) {
+    $teacherId = $_SESSION['TeacherID'];
+}
 $examObj = new Exam();
-$examSchedules = $examObj->getAllExams(); // Lấy danh sách các ca thi
+$examSchedules = $examObj->getAllExamsOfTeacher($teacherId); // Lấy danh sách các ca thi
 
 // Chuẩn bị dữ liệu để trả về dưới dạng JSON
 $response = array();

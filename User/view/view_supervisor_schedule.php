@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,7 @@
     // Hàm để load lại danh sách các ca thi
     function loadSchedule() {
         $.ajax({
-            url: '../User/view/load_schedule.php', // chỉnh sửa đường dẫn tới load_schedule.php
+            url: '?page=load_schedule', // chỉnh sửa đường dẫn tới load_schedule.php
             type: 'GET',
             dataType: 'json',
             success: function(response) {

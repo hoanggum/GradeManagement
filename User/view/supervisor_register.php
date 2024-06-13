@@ -54,7 +54,7 @@ $registeredExamIds = array_column($registeredExams, 'exam_id');
 </head>
 <body>
     <h1 style="width: 100%; text-align: center;">Đăng ký gác thi</h1>    
-    <form method="post" action="../User/view/submit_supervision_registration.php">
+    <form id="examForm" method="post" action="../User/view/submit_supervision_registration.php" enctype="multipart/form-data">
         <table>
             <thead>
                 <tr>
@@ -98,7 +98,7 @@ $registeredExamIds = array_column($registeredExams, 'exam_id');
             </tbody>
         </table>
         <div class="submit-container">
-            <input type="submit" value="Đăng ký gác thi" disabled>
+            <input type="submit" id="submitButton" value="Đăng ký gác thi">
         </div>
     </form>
     <script>

@@ -12,6 +12,19 @@ class Exam extends Db
                 INNER JOIN examroom er ON era.room_id = er.room_id";
         return $this->selectQuery($sql);
     }
+    public function getAllExamsOfTeacher($teacherId)
+    {
+        $sql = "SELECT es.Exam_ID, es.ExamDate, es.ExamRound, es.ExamTime, es.Duration, sj.SubjectName, er.room_name
+                FROM examschedule es
+                INNER JOIN subjects_section ss ON es.section_ID = ss.SectionID
+                INNER JOIN subjects sj ON ss.SubjectID = sj.SubjectID
+                INNER JOIN exam_room_assignments era ON es.Exam_ID = era.Exam_ID
+                INNER JOIN examroom er ON era.room_id = er.room_id
+                INNER JOIN exam_invigilation ei ON ei.Exam_ID = es.Exam_ID
+                WHERE ei.teacher_id = :teacherId";
+        $params = array(':teacherId' => $teacherId);
+        return $this->selectQuery($sql, $params);
+    }
     public function createExamSchedule($subjectId, $examDate, $examTime, $duration, $examRound, $roomId)
     {
         $sql = "INSERT INTO examschedule (SubjectID, ExamDate, ExamTime, Duration, ExamRound, Room_ID)

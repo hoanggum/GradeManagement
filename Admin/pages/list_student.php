@@ -137,7 +137,7 @@
                 tableHtml += `<tr>
                     <td style="border: 1px solid #ddd; padding: 8px;">${student.StudentID}</td>
                     <td style="border: 1px solid #ddd; padding: 8px;">${student.FullName}</td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">${student.ClassName}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">${student.className}</td>
                     <td style="border: 1px solid #ddd; padding: 8px;">${student.DepartmentName}</td>
                 </tr>`;
             });

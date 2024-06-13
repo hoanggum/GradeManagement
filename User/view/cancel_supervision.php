@@ -5,15 +5,14 @@ require_once BASE_PATH . '/Model/Exam.php';
 require_once BASE_PATH . '/Model/Teacher.php';
 require_once BASE_PATH . '/Model/ExamInvigilation.php';
 
+
 $response = array('success' => false, 'message' => '');
 
-// Kiểm tra người dùng đã đăng nhập và có vai trò là Teacher
 if (!isset($_SESSION['TeacherID'])) {
     $response['message'] = "Không thể hủy đăng ký gác thi khi chỉ còn ít hơn 7 ngày hoặc bạn không có quyền hủy.";
     echo json_encode($response);
     exit();
 }
-
 if (isset($_POST['exam_id'])) {
     $examId = $_POST['exam_id'];
     $teacherId = $_SESSION['TeacherID'];

@@ -24,13 +24,13 @@ class Teacher extends Db
                   INNER JOIN examschedule e ON ei.exam_id = e.Exam_ID 
                   WHERE ei.teacher_id = ? AND e.Exam_ID = ?";
         $params = array($teacherId, $examId);
-        return $this->db->selectQuery($query, $params);
+        return $this->selectQuery($query, $params);
     }
 
     public function unregisterExam($teacherId, $examId) {
         $query = "DELETE FROM exam_invigilation WHERE teacher_id = ? AND exam_id = ?";
         $params = array($teacherId, $examId);
-        return $this->db->executeQuery($query, $params);
+        return $this->updateQuery($query, $params);
     }
     // Get all sections taught by a teacher
     public function getSectionsByTeacherId($teacherId)
