@@ -57,6 +57,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="?page=register_section">Đăng kí học phần</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=StudentExamSchedule">Xem lịch thi</a>
+                        </li>
                     <?php endif; ?>
 
                     <li class="nav-item">

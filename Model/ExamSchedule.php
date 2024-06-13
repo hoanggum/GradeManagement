@@ -67,6 +67,30 @@ class ExamSchedule extends Db {
     }
 
     // Add other methods as needed for ExamSchedule class
+    public function getStudentExamSchedule($studentId) {
+        $sql = "SELECT 
+                    es.Exam_ID,
+                    es.ExamDate,
+                    es.ExamRound,
+                    es.ExamTime,
+                    es.Duration,
+                    s.SubjectName,
+                    er.room_name
+                FROM 
+                    examscheduledetail esd
+                JOIN 
+                    examschedule es ON esd.Exam_ID = es.Exam_ID
+                JOIN 
+                    examroom er ON esd.room_id = er.room_id
+                JOIN 
+                    subjects_section ss ON ss.SectionID = es.section_ID
+                JOIN 
+                    subjects s ON s.SubjectID = ss.SubjectID
+                WHERE 
+                    esd.StudentID = :studentId";
+        $params = array(':studentId' => $studentId);
+        return $this->selectQuery($sql, $params);
+    }
 }
 
 ?>
