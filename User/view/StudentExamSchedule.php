@@ -21,57 +21,49 @@ if ($studentId) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch Thi Sinh Viên</title>
     <style>
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px auto;
+        body {
+            font-family: Arial, sans-serif;
         }
-        th, td {
+        .schedule-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns for Monday to Friday */
+            gap: 10px;
+            padding: 20px;
+        }
+        .schedule-item {
+            background-color: #f9f9f9;
             border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
+            border-radius: 4px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
-        th {
-            background-color: #f2f2f2;
+        .schedule-header {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-<h2 style="text-align: center;">Lịch Thi Sinh Viên</h2>
+<h1 class="schedule-header">Lịch Thi Sinh Viên</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Mã Thi</th>
-            <th>Ngày Thi</th>
-            <th>Vòng Thi</th>
-            <th>Giờ Thi</th>
-            <th>Thời Lượng</th>
-            <th>Môn Học</th>
-            <th>Tên Phòng</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (!empty($schedule)): ?>
-            <?php foreach ($schedule as $exam): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($exam["Exam_ID"]); ?></td>
-                    <td><?php echo htmlspecialchars($exam["ExamDate"]); ?></td>
-                    <td><?php echo htmlspecialchars($exam["ExamRound"]); ?></td>
-                    <td><?php echo htmlspecialchars($exam["ExamTime"]); ?></td>
-                    <td><?php echo htmlspecialchars($exam["Duration"]); ?></td>
-                    <td><?php echo htmlspecialchars($exam["SubjectName"]); ?></td>
-                    <td><?php echo htmlspecialchars($exam["room_name"]); ?></td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <tr>
-                <td colspan="7">Không có lịch thi cho sinh viên này.</td>
-            </tr>
-        <?php endif; ?>
-    </tbody>
-</table>
+<div class="schedule-container">
+    <?php if (!empty($schedule)): ?>
+        <?php foreach ($schedule as $exam): ?>
+            <div class="schedule-item">
+                <h4><?php echo htmlspecialchars($exam["SubjectName"]); ?></h4>
+                <p><strong>Ngày:</strong> <?php echo htmlspecialchars($exam["ExamDate"]); ?></p>
+                <p><strong>Vòng:</strong> <?php echo htmlspecialchars($exam["ExamRound"]); ?></p>
+                <p><strong>Giờ:</strong> <?php echo htmlspecialchars($exam["ExamTime"]); ?></p>
+                <p><strong>Thời Lượng:</strong> <?php echo htmlspecialchars($exam["Duration"]); ?> phút</p>
+                <p><strong>Phòng:</strong> <?php echo htmlspecialchars($exam["room_name"]); ?></p>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>Không có lịch thi cho sinh viên này.</p>
+    <?php endif; ?>
+</div>
 
 </body>
 </html>
