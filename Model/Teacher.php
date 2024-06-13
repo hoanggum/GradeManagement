@@ -22,16 +22,18 @@ class Teacher extends Db
     public function getRegisteredExamById($teacherId, $examId) {
         $query = "SELECT e.* FROM exam_invigilation ei 
                   INNER JOIN examschedule e ON ei.exam_id = e.Exam_ID 
-                  WHERE ei.teacher_id = ? AND e.Exam_ID = ?";
-        $params = array($teacherId, $examId);
+                  WHERE ei.teacher_id = :teacherId AND e.Exam_ID = :examId";
+        $params = array(':teacherId' => $teacherId, ':examId' => $examId);
         return $this->selectQuery($query, $params);
     }
+    
 
-    public function unregisterExam($teacherId, $examId) {
-        $query = "DELETE FROM exam_invigilation WHERE teacher_id = ? AND exam_id = ?";
-        $params = array($teacherId, $examId);
+    public function unregisterExam($roomId, $teacherId, $examId) {
+        $query = "DELETE FROM exam_invigilation WHERE teacher_id = :teacherId AND exam_id = :examId AND room_id = :roomId";
+        $params = array(':teacherId' => $teacherId, ':examId' => $examId, ':roomId' => $roomId);
         return $this->updateQuery($query, $params);
     }
+    
     // Get all sections taught by a teacher
     public function getSectionsByTeacherId($teacherId)
     {

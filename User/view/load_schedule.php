@@ -22,7 +22,9 @@ foreach ($examSchedules as $schedule) {
         'ExamTime' => $schedule['ExamTime'],
         'Duration' => $schedule['Duration'],
         'SubjectName' => $schedule['SubjectName'],
+        'room_id' => $schedule['room_id'],
         'room_name' => $schedule['room_name'],
+        'Teacher_ID' => $teacherId,
         // Các thông tin khác nếu cần thiết
     );
     $response[] = $rowData;

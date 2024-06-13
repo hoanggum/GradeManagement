@@ -14,7 +14,7 @@ class Exam extends Db
     }
     public function getAllExamsOfTeacher($teacherId)
     {
-        $sql = "SELECT es.Exam_ID, es.ExamDate, es.ExamRound, es.ExamTime, es.Duration, sj.SubjectName, er.room_name
+        $sql = "SELECT es.Exam_ID, es.ExamDate, es.ExamRound, es.ExamTime, es.Duration, sj.SubjectName,er.room_id, er.room_name
                 FROM examschedule es
                 INNER JOIN subjects_section ss ON es.section_ID = ss.SectionID
                 INNER JOIN subjects sj ON ss.SubjectID = sj.SubjectID

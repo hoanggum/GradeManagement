@@ -3,9 +3,9 @@
 <html>
 <head>
     <title>Lịch Gác Thi Của Tôi</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <body>
     <div class="container mt-5">
         <h1 style="text-align: center;">Lịch Gác Thi Của Tôi</h1>
@@ -31,49 +31,10 @@
 
     <script>
     $(document).ready(function(){
-        // Hàm xử lý khi click vào button huỷ đăng ký
-        $('body').on('click', '.cancel-btn', function(e){
-            e.preventDefault();
-            var examId = $(this).data('examid');
-
-            // Gửi yêu cầu AJAX
-            $.ajax({
-                url: '../User/view/cancel_supervision.php', // chỉnh sửa đường dẫn tới cancel_supervision.php
-                type: 'POST',
-                data: {exam_id: examId},
-                dataType: 'json',
-                success: function(response) {
-                    if(response.success) {
-                        // Hiển thị thông báo thành công
-                        $('#message').html('<div class="alert alert-success">' + response.message + '</div>');
-
-                        // Xóa và cập nhật lại dữ liệu trong bảng
-                        $('#scheduleTable tbody').empty();
-                        $.each(response.data, function(index, schedule) {
-                            var row = '<tr>' +
-                                '<td>' + schedule.Exam_ID + '</td>' +
-                                '<td>' + schedule.ExamDate + '</td>' +
-                                '<td>' + schedule.ExamRound + '</td>' +
-                                '<td>' + schedule.ExamTime + '</td>' +
-                                '<td>' + schedule.Duration + ' phút</td>' +
-                                '<td>' + schedule.SubjectName + '</td>' +
-                                '<td>' + schedule.room_name + '</td>' +
-                                '<td><button class="cancel-btn" data-examid="' + schedule.Exam_ID + '">Huỷ</button></td>' +
-                                '</tr>';
-                            $('#scheduleTable tbody').append(row);
-                        });
-                    } else {
-                        // Hiển thị thông báo lỗi
-                        $('#message').html('<div class="alert alert-danger">' + response.message + '</div>');
-                    }
-                }
-            });
-        });
-
         // Load danh sách các ca thi khi trang được tải
         loadSchedule();
     });
-
+    
     // Hàm để load lại danh sách các ca thi
     function loadSchedule() {
         $.ajax({
@@ -91,10 +52,47 @@
                         '<td>' + schedule.Duration + ' phút</td>' +
                         '<td>' + schedule.SubjectName + '</td>' +
                         '<td>' + schedule.room_name + '</td>' +
-                        '<td><button class="cancel-btn" data-examid="' + schedule.Exam_ID + '">Huỷ</button></td>' +
+                        '<td><button class="cancel-btn btn btn-danger" data-examid="' + schedule.Exam_ID + '" data-roomid="' + schedule.Room_ID + '" data-teacherid="' + schedule.Teacher_ID + '" onclick="cancelSupervision(' + schedule.room_id + ', ' + schedule.Teacher_ID + ', ' + schedule.Exam_ID + ')">Huỷ</button></td>' +
                         '</tr>';
                     $('#scheduleTable tbody').append(row);
                 });
+            },
+            error: function(xhr, status, error) {
+                // Hiển thị thông báo lỗi nếu có lỗi trong yêu cầu AJAX
+                $('#message').html('<div class="alert alert-danger">Có lỗi xảy ra khi tải lịch: ' + error + '</div>');
+            }
+        });
+    }
+    
+    function cancelSupervision(roomId, teacherId, examId){
+        var confirmCancel = confirm("Bạn có chắc chắn muốn huỷ đăng ký ca thi này không?");
+        if (!confirmCancel) {
+            return; // Nếu người dùng chọn "Không", không làm gì cả
+        }
+        console.log(roomId,teacherId,examId);
+        // Gửi yêu cầu AJAX
+        $.ajax({
+            url: '../User/view/cancel_supervision.php', // Đường dẫn đến file xử lý hủy đăng ký gác thi
+            type: 'POST',
+            data: { room_id: roomId, teacher_id: teacherId, exam_id: examId },
+
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Hiển thị thông báo thành công
+                    $('#message').html('<div class="alert alert-success">' + response.message + '</div>');
+
+                    // Load lại danh sách các ca thi sau khi huỷ thành công
+                    loadSchedule();
+                } else {
+                    // Hiển thị thông báo lỗi
+                    $('#message').html('<div class="alert alert-danger">' + response.message + '</div>');
+                }
+            },
+            error: function(xhr, status, error) {
+                // Hiển thị thông báo lỗi nếu có lỗi trong yêu cầu AJAX
+                console.error('Lỗi khi gửi yêu cầu AJAX:', error);
+                $('#message').html('<div class="alert alert-danger">Có lỗi xảy ra: ' + error + '</div>');
             }
         });
     }
